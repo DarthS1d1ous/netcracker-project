@@ -13,11 +13,16 @@ import {BillingDetailsViewComponent} from "./modules/layout/components/billing-d
 import {NotFoundComponent} from "./modules/layout/components/404/not-found.component";
 import {LayoutModule} from "./modules/layout/layout.module";
 import {HomeComponent} from "./modules/layout/components/home/home.component";
+import {MainModule} from "./modules/main/main.module";
+import {SidebarModule} from "./modules/sidebar/sidebar.module";
+import {SinglePostComponent} from "./modules/layout/components/single-post/single-post.component";
+import {LoginComponent} from "./modules/layout/components/login/login.component";
 
 const appRoutes: Routes = [
   {path: "", component: HomeComponent},
   {path: "home", component: HomeComponent},
-  {path: "billing-details/:id", component: BillingDetailsViewComponent},
+  {path: "login", component: LoginComponent},
+  {path: "single", component: SinglePostComponent},
   {path: "**", component: NotFoundComponent}
 ];
 
@@ -34,7 +39,9 @@ const appRoutes: Routes = [
     BsDropdownModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    SidebarModule,
+    MainModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,24 @@
+<article class="post">
+  <header>
+    <div class="title">
+      <h2><a href="single">{{mainPost.title1}}</a></h2>
+      <p>{{mainPost.title2}}</p>
+    </div>
+    <div class="meta">
+      <time class="published" datetime="2015-11-01">{{mainPost.datetime}}</time>
+      <a href="#" class="author"><span class="name">{{mainPost.authorName}}</span><img src="{{mainPost.avatarPath}}" alt="" /></a>
+    </div>
+  </header>
+  <a href="single" class="image featured"><img src="{{mainPost.imagePath}}" alt="" /></a>
+  <p>{{mainPost.postInfo}}</p>
+  <footer>
+    <ul class="actions">
+      <li><a href="single" class="button large">Continue Reading</a></li>
+    </ul>
+    <ul class="stats">
+      <li><a href="#">General</a></li>
+      <li><a href="#" class="icon solid fa-heart">{{mainPost.likes}}</a></li>
+      <li><a href="#" class="icon solid fa-comment">{{mainPost.comments}}</a></li>
+    </ul>
+  </footer>
+</article>
