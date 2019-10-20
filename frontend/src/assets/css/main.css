@@ -165,12 +165,11 @@ body, input, select, textarea {
 
 }
 
-a {
+#wrapper a {
   -moz-transition: color 0.2s ease, border-bottom-color 0.2s ease;
   -webkit-transition: color 0.2s ease, border-bottom-color 0.2s ease;
   -ms-transition: color 0.2s ease, border-bottom-color 0.2s ease;
   transition: color 0.2s ease, border-bottom-color 0.2s ease;
-  border-bottom: dotted 1px rgba(160, 160, 160, 0.65);
   color: inherit;
   text-decoration: none;
 }
@@ -1998,7 +1997,7 @@ button:disabled:before,
 
 /* Form */
 
-form {
+#wrapper form {
   margin: 0 0 2em 0;
 }
 
