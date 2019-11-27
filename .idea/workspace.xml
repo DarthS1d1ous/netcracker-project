@@ -2,97 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b032c04b-60e8-40e1-b844-3c26743f146c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/controller/CommentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/controller/PostController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/controller/RoleController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/controller/TagController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/entity/Comment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/entity/Post.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/entity/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/entity/Tag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/entity/UsersEntity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/repository/CommentRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/repository/PostRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/repository/RoleRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/repository/TagRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/service/CommentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/service/PostService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/service/RoleService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/service/TagService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/service/impl/CommentServiceImp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/service/impl/PostServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/service/impl/RoleServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/service/impl/TagServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/controller/CommentController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/controller/PostController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/controller/TagController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/models/Comment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/models/Post.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/models/Role.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/models/Tag.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/service/CommentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/service/PostService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/service/TagService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/service/impl/CommentServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/service/impl/PostServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/service/impl/TagServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/models/comment/comment.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/models/post/post.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/models/tag/tag.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/models/user/user.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/modules/sidebar/component/mini-posts/mini-post/mini-post.component.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/services/comment.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/services/post.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/services/tag.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/frontend/src/app/services/user.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/8212e6fc-1a3f-4d86-95e8-81968eaa284f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/8212e6fc-1a3f-4d86-95e8-81968eaa284f.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/be/src/main/java/com/netcracker/edu/backend/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/edu-parent.iml" beforeDir="false" afterPath="$PROJECT_DIR$/edu-parent.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/filter/CORSFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/filter/CORSFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fapi/target/classes/com/netcracker/edu/fapi/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/fapi/target/classes/com/netcracker/edu/fapi/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fapi/target/classes/com/netcracker/edu/fapi/filter/CORSFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/fapi/target/classes/com/netcracker/edu/fapi/filter/CORSFilter.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fapi/target/classes/com/netcracker/edu/fapi/models/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/fapi/target/classes/com/netcracker/edu/fapi/models/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fapi/target/classes/com/netcracker/edu/fapi/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/fapi/target/classes/com/netcracker/edu/fapi/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fapi/target/classes/com/netcracker/edu/fapi/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/fapi/target/classes/com/netcracker/edu/fapi/service/impl/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/models/main-post/main-post.model.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/header/components/header.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/header/components/header.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/layout/components/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/layout/components/login/login.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/layout/components/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/layout/components/login/login.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/layout/components/single-post/single-post.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/layout/components/single-post/single-post.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/layout/components/single-post/single-post.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/layout/components/single-post/single-post.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/layout/layout.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/layout/layout.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/main/components/main-post/main-post.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/main/components/main-post/main-post.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/main/components/main-post/main-post.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/main/components/main-post/main-post.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/main/components/main.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/main/components/main.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/main/components/main.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/main/components/main.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/main/main.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/main/main.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/sidebar/component/footer/footer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/sidebar/component/footer/footer.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/sidebar/component/footer/footer.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/sidebar/component/footer/footer.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/sidebar/component/intro/intro.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/sidebar/component/intro/intro.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/sidebar/component/intro/intro.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/sidebar/component/intro/intro.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/sidebar/component/mini-posts/mini-posts.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/sidebar/component/mini-posts/mini-posts.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/sidebar/component/mini-posts/mini-posts.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/sidebar/component/mini-posts/mini-posts.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/sidebar/component/sidebar.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/sidebar/component/sidebar.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/app/modules/sidebar/sidebar.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/modules/sidebar/sidebar.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/assets/css/login.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/assets/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/fonts/webfonts/fa-regular-400.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/assets/fonts/webfonts/fa-regular-400.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/fonts/webfonts/fa-solid-900.svg" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/assets/fonts/webfonts/fa-solid-900.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/assets/js/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/assets/js/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/be/target/" />
     <ignored path="$PROJECT_DIR$/fapi/target/" />
@@ -233,11 +143,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/app/modules/main/components/main-post/main-post.component.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="57" column="22" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
+            <state relative-caret-position="268">
+              <caret line="56" column="57" selection-start-line="56" selection-start-column="48" selection-end-line="56" selection-end-column="57" />
               <folding>
                 <element signature="e#0#55#0" expanded="true" />
               </folding>
@@ -263,11 +173,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/frontend/src/app/models/post/post.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="216">
-              <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+            <state relative-caret-position="198">
+              <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
               <folding>
                 <element signature="e#0#34#0" expanded="true" />
               </folding>
@@ -424,7 +334,6 @@
         <option value="$PROJECT_DIR$/frontend/src/app/modules/layout/components/single-post/single-post.component.ts" />
         <option value="$PROJECT_DIR$/frontend/src/app/modules/layout/components/single-post/single-post.component.html" />
         <option value="$PROJECT_DIR$/frontend/src/app/modules/main/components/main.component.html" />
-        <option value="$PROJECT_DIR$/frontend/src/app/models/post/post.ts" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
         <option value="$PROJECT_DIR$/frontend/src/app/modules/layout/layout.module.ts" />
         <option value="$PROJECT_DIR$/frontend/src/app/modules/main/main.module.ts" />
@@ -435,6 +344,7 @@
         <option value="$PROJECT_DIR$/fapi/src/main/java/com/netcracker/edu/fapi/service/impl/CommentServiceImpl.java" />
         <option value="$PROJECT_DIR$/frontend/src/app/services/comment.service.ts" />
         <option value="$PROJECT_DIR$/frontend/src/app/modules/main/components/main-post/main-post.component.ts" />
+        <option value="$PROJECT_DIR$/frontend/src/app/models/post/post.ts" />
       </list>
     </option>
   </component>
@@ -954,7 +864,7 @@
     <property name="ToolWindowRun.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1574865860752" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1574866667099" />
     <property name="database.console.LAST_STATE" value="false" />
     <property name="editor.config.ad.shown" value="true" />
     <property name="last_opened_file_path" value="E:/JavaBSU/Алгоритмы 3 курс" />
@@ -1075,12 +985,12 @@
       <workItem from="1574243191334" duration="20608000" />
       <workItem from="1574406958237" duration="29787000" />
       <workItem from="1574524035820" duration="8339000" />
-      <workItem from="1574690567189" duration="53674000" />
+      <workItem from="1574690567189" duration="54563000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="402661000" />
+    <option name="totallyTimeSpent" value="403550000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1095,7 +1005,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.7833153" visible="true" weight="0.25426438" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.7833153" visible="true" weight="0.25426438" />
       <window_info id="Structure" order="1" sideWeight="0.50143266" side_tool="true" weight="0.21588486" />
       <window_info id="Designer" order="2" />
       <window_info id="Image Layers" order="3" />
@@ -1113,7 +1023,7 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Spring" order="7" weight="0.32936078" />
       <window_info anchor="bottom" id="TypeScript" order="8" weight="0.32936078" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49946696" weight="0.35211268" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49946696" visible="true" weight="0.35211268" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="CheckStyle" order="11" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.50053304" side_tool="true" weight="0.65547127" />
@@ -1557,16 +1467,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/app/models/post/post.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="12" column="16" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#34#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/app/models/tag/tag.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -1607,10 +1507,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/app/modules/main/components/main-post/main-post.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="57" column="22" selection-start-line="57" selection-start-column="22" selection-end-line="57" selection-end-column="22" />
+        <state relative-caret-position="268">
+          <caret line="56" column="57" selection-start-line="56" selection-start-column="48" selection-end-line="56" selection-end-column="57" />
           <folding>
             <element signature="e#0#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/app/models/post/post.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="11" column="13" lean-forward="true" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#34#0" expanded="true" />
           </folding>
         </state>
       </provider>
