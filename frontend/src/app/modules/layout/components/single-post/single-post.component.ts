@@ -1,4 +1,9 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, OnDestroy, OnInit} from "@angular/core";
+import {ActivatedRoute} from "@angular/router";
+import {Observable, Subscription} from "rxjs";
+import {PostService} from "../../../../services/post.service";
+import {Post} from "../../../../models/post/post";
+import {tap} from "rxjs/operators";
 
 @Component({
   selector: "app-single-post",
@@ -6,9 +11,10 @@ import { Component, OnInit } from "@angular/core";
 })
 export class SinglePostComponent implements OnInit {
 
-  constructor( ) {}
+  constructor() {
+  }
 
   ngOnInit() {
-
   }
+
 }

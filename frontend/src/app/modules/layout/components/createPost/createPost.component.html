@@ -1,0 +1,32 @@
+<app-header></app-header>
+<div id="wrapper">
+  <form class="create-post" [formGroup]="createPostForm" (ngSubmit)="onCreate(createPostForm.value)" action=""
+        method="post" name="form">
+    <label for="title">Title</label>
+    <input class="title-input" type="text" formControlName="title" id="title">
+    <!--<div class="invalid" *ngIf="signUpForm.get('name').invalid && signUpForm.get('name').touched">-->
+    <!--Incorrect name-->
+    <!--</div>-->
+    <label for="tags">#Tags</label>
+    <input type="text" formControlName="tags" id="tags" placeholder="#name#name">
+    <div class="invalid" *ngIf="createPostForm.get('tags').invalid && createPostForm.get('tags').touched">
+    Incorrect #tags
+    </div>
+    <label for="photoPath">Image</label>
+    <input class="" type="file" accept="image/*" formControlName="photoPath" id="photoPath"
+           (change)="handleFileSelect($event)"/>
+    <!--<div class="invalid" *ngIf="signUpForm.get('surname').invalid && signUpForm.get('surname').touched">-->
+    <!--Incorrect surname-->
+    <!--</div>-->
+    <div class="postImage">
+      <img src="data:image/png;base64,{{base64ImageTextString}}" alt=""/>
+    </div>
+    <label for="description">Description</label>
+    <textarea formControlName="description" id="description"></textarea>
+    <!--<input class="" type="text" />-->
+    <!--<div class="invalid" *ngIf="signUpForm.get('phone').invalid && signUpForm.get('phone').touched">-->
+    <!--Incorrect phone number-->
+    <!--</div>-->
+    <button type="submit" class="" [disabled]="createPostForm.invalid">Create</button>
+  </form>
+</div>

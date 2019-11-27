@@ -1,9 +1,12 @@
 <!-- Main -->
 <div id="main">
 
-  <app-main-post *ngFor="let mainPost of mainPosts"
-                 [mainPost]="mainPost">
+  <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
+
+  <app-main-post *ngFor="let post of posts | paginate: config" [post]="post">
   </app-main-post>
+
+  <pagination-controls (pageChange)="pageChanged($event)"></pagination-controls>
   <!--&lt;!&ndash; Post &ndash;&gt;-->
   <!--<article class="post">-->
     <!--<header>-->
@@ -83,9 +86,9 @@
   <!--</article>-->
 
   <!-- Pagination -->
-  <ul class="actions pagination">
-    <li><a href="" class="disabled button large previous">Previous Page</a></li>
-    <li><a href="#" class="button large next">Next Page</a></li>
-  </ul>
+  <!--<ul class="actions pagination">-->
+    <!--<li><a href="" class="disabled button large previous">Previous Page</a></li>-->
+    <!--<li><a href="#" class="button large next">Next Page</a></li>-->
+  <!--</ul>-->
 
 </div>

@@ -10,7 +10,7 @@ import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/users")
 public class UserController {
 
     @Autowired
@@ -18,17 +18,28 @@ public class UserController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping
-    public List<User> getAllUsers(){
-        return userService.findAll();
+    public List<User> getAllUsers() {
+        return userService.findAllUsers();
     }
 
-    @GetMapping("/login/{login}")
-    public User getUserByLogin(@PathVariable String login) {
-        return userService.findByLogin(login);
+    @GetMapping("/")
+    public User getUserByUsername(@RequestParam(value = "username") String username) {
+        return userService.findByUsername(username);
     }
 
-    @RequestMapping(value="/signup", method = RequestMethod.POST, produces = "application/json")
-    public User saveUser(@RequestBody User user){
-        return userService.save(user);
+    @GetMapping(value = "/{id}")
+    public User getUserById(@PathVariable(name = "id") long id) {
+        return userService.findById(id);
     }
+
+    @RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json")
+    public User saveUser(@RequestBody User user) {
+        return userService.saveUser(user);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public void deleteUser(@PathVariable(name = "id") long id) {
+        userService.deleteUser(id);
+    }
+
 }

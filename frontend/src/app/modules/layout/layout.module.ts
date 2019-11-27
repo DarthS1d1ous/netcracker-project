@@ -11,6 +11,10 @@ import {SinglePostComponent} from "./components/single-post/single-post.componen
 import {FooterComponent} from "../sidebar/component/footer/footer.component";
 import {FooterModule} from "../sidebar/component/footer/footer.module";
 import {LoginComponent} from "./components/login/login.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {CommonModule} from "@angular/common";
+import {CreatePostComponent} from "./components/createPost/createPost.component";
+import {MainPostComponent} from "../main/components/main-post/main-post.component";
 
 
 @NgModule({
@@ -19,17 +23,22 @@ import {LoginComponent} from "./components/login/login.component";
     NotFoundComponent,
     BillingDetailsViewComponent,
     SinglePostComponent,
-    LoginComponent
+    LoginComponent,
+    CreatePostComponent
   ],
   imports: [
     BillingAccountModule,
     HeaderModule,
     RouterModule,
     SidebarModule,
+    FormsModule,
     MainModule,
-    FooterModule
+    FooterModule,
+    FormsModule,
+    CommonModule,
+    ReactiveFormsModule,
   ],
   providers: [],
-  exports: [HomeComponent, NotFoundComponent, BillingDetailsViewComponent, SinglePostComponent, LoginComponent]
+  exports: [HomeComponent, NotFoundComponent, BillingDetailsViewComponent, SinglePostComponent, LoginComponent, CreatePostComponent]
 })
 export class LayoutModule {}
