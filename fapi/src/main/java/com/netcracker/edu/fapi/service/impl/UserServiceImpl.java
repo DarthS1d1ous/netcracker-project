@@ -1,6 +1,7 @@
 package com.netcracker.edu.fapi.service.impl;
 
 import com.netcracker.edu.fapi.models.User;
+
 import com.netcracker.edu.fapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,33 +25,66 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public User findByLogin(String login) {
+    public List<User> findAllUsers() {
         RestTemplate restTemplate = new RestTemplate();
-        User user = restTemplate.getForObject(backendServerUrl + "/api/user/login/" + login, User.class);
-        return user;
+        User[] user = restTemplate.getForObject(backendServerUrl+"/api/users", User[].class);
+        return user == null ? Collections.emptyList() : Arrays.asList(user);
     }
 
     @Override
-    public List<User> findAll() {
+    public User findByUsername(String username) {
         RestTemplate restTemplate = new RestTemplate();
-        User[] usersResponse = restTemplate.getForObject(backendServerUrl + "/api/user", User[].class);
-        return usersResponse == null ? Collections.emptyList() : Arrays.asList(usersResponse);
+        return restTemplate.getForObject(backendServerUrl+"/api/users/?username=" + username, User.class);
     }
 
     @Override
-    public User save(User user) {
+    public User findById(long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(backendServerUrl+"/api/users/" + id, User.class);
+    }
+
+    @Override
+    public User saveUser(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.postForEntity(backendServerUrl + "/api/user", user, User.class).getBody();
+        return restTemplate.postForEntity(backendServerUrl + "/api/users", user, User.class).getBody();
     }
 
     @Override
+    public void deleteUser(long id) {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.delete(backendServerUrl + "/api/users/" + id);
+    }
+
+
+//    @Override
+//    public User findByLogin(String login) {
+//        RestTemplate restTemplate = new RestTemplate();
+//        User user = restTemplate.getForObject(backendServerUrl + "/api/user/login/" + login, User.class);
+//        return user;
+//    }
+//
+//    @Override
+//    public List<User> findAll() {
+//        RestTemplate restTemplate = new RestTemplate();
+//        User[] usersResponse = restTemplate.getForObject(backendServerUrl + "/api/user", User[].class);
+//        return usersResponse == null ? Collections.emptyList() : Arrays.asList(usersResponse);
+//    }
+//
+//    @Override
+//    public User save(User user) {
+//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+//        RestTemplate restTemplate = new RestTemplate();
+//        return restTemplate.postForEntity(backendServerUrl + "/api/user", user, User.class).getBody();
+//    }
+//
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = findByLogin(username);
+        User user = findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException("Invalid username or password.");
         }
-        return new org.springframework.security.core.userdetails.User(user.getLogin(), user.getPassword(), getAuthority(user));
+        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority(user));
     }
 
     private Set<SimpleGrantedAuthority> getAuthority(User user) {

@@ -1,24 +1,45 @@
-<article class="post">
+<article [class.singlePost]="singlePost" [class.mainPost]="mainPost" class="post">
   <header>
     <div class="title">
-      <h2><a href="single">{{mainPost.title1}}</a></h2>
-      <p>{{mainPost.title2}}</p>
+      <h2><a [routerLink]="['/posts', post.id]">{{post.title}}</a></h2>
+      <p>{{postTags}}</p>
     </div>
     <div class="meta">
-      <time class="published" datetime="2015-11-01">{{mainPost.datetime}}</time>
-      <a href="#" class="author"><span class="name">{{mainPost.authorName}}</span><img src="{{mainPost.avatarPath}}" alt="" /></a>
+      <time class="published" datetime="2015-11-01">{{date | date: format}}</time>
+      <a href="#" class="author"><span class="name">{{post.user.name}} {{post.user.surname}}</span>
+        <div class="mainImage">
+          <img src="{{checkMainPhoto(post.user.mainPhoto)}}" alt=""/>
+        </div>
+      </a>
     </div>
   </header>
-  <a href="single" class="image featured"><img src="{{mainPost.imagePath}}" alt="" /></a>
-  <p>{{mainPost.postInfo}}</p>
+  <a [routerLink]="['/posts', post.id]" class="image featured"><img src="data:image/png;base64,{{post.photoPath}}"
+                                                                    alt=""/></a>
+  <p>{{post.description}}</p>
   <footer>
-    <ul class="actions">
-      <li><a href="single" class="button large">Continue Reading</a></li>
-    </ul>
+    <!--<ul class="actions">-->
+    <!--<li><a [routerLink]="['/single', post.id]" class="button large">Continue Reading</a></li>-->
+    <!--</ul>-->
     <ul class="stats">
-      <li><a href="#">General</a></li>
-      <li><a href="#" class="icon solid fa-heart">{{mainPost.likes}}</a></li>
-      <li><a href="#" class="icon solid fa-comment">{{mainPost.comments}}</a></li>
+      <!--<li><a href="#">General</a></li>-->
+      <li><a class="icon solid fa-heart" [class.active]="postLikedByUser"
+             (click)="putLike()">{{post.userLikes.length}}</a></li>
+      <li><a class="icon solid fa-comment" [routerLink]="['/posts', post.id]">{{post.comments.length}}</a></li>
     </ul>
+    <div *ngIf="singlePost && post.comments.length!=0" class="comments">
+      <div class="comment" *ngFor="let comment of  post.comments">
+        <div class="mainImage author">
+          <img src="{{checkMainPhoto(comment.user.mainPhoto)}}" alt=""/>
+        </div>
+        <p class="commentUsername">{{comment.user.username}}</p>
+        <p class="commentMessage">{{comment.message}}</p>
+        <p>{{comment.timeCreation | date: format}}</p>
+        <div class="clear-fix"></div>
+      </div>
+    </div>
+    <div *ngIf="singlePost">
+      <textarea name="comment" [(ngModel)]="comment" placeholder="Comment" ></textarea>
+      <button type="submit" class="addComment" (click)="addComment(comment)">Publish</button>
+    </div>
   </footer>
 </article>
