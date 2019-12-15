@@ -8,7 +8,7 @@ import java.util.Set;
 public class Role {
     private long id;
     private String title;
-    private Set<User> users;
+//    private Set<User> users;
 
     public Role(String title) {
         this.title = title;
@@ -33,13 +33,13 @@ public class Role {
         this.title = role;
     }
 
-    public Set<User> getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set<User> users) {
-        this.users = users;
-    }
+//    public Set<User> getUsers() {
+//        return users;
+//    }
+//
+//    public void setUsers(Set<User> users) {
+//        this.users = users;
+//    }
 
     @Override
     public boolean equals(Object o) {
@@ -47,13 +47,12 @@ public class Role {
         if (o == null || getClass() != o.getClass()) return false;
         Role role = (Role) o;
         return id == role.id &&
-                Objects.equals(this.title, role.title) &&
-                Objects.equals(users, role.users);
+                Objects.equals(this.title, role.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, users);
+        return Objects.hash(id, title);
     }
 
     @Override

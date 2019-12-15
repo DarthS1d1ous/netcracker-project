@@ -1,8 +1,8 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Post} from "../models/post/post";
-import {Page} from "../models/page/Page";
+import {Post} from "../models/post";
+import {Page} from "../models/page";
 
 @Injectable({
   providedIn: 'root'
@@ -17,8 +17,20 @@ export class PostService { //todo create interface
     return this.http.get<Page>('/api/posts?page=' + page + "&size=" + size + "&direction=" + direction +"&properties=" + properties);
   }
 
+  findPostsByUserId(userId: number): Observable<Post[]> {
+    return this.http.get<Post[]>('/api/posts/user/' + userId);
+  }
+
+  findMostLikedPosts(): Observable<Post[]> {
+    return this.http.get<Post[]>('/api/posts/mostByLikes');
+  }
+
   savePost(post: Post): Observable<Post> {
     return this.http.post<Post>('/api/posts', post);
+  }
+
+  createPost(post: Post): Observable<Post> {
+    return this.http.post<Post>('/api/posts/create', post);
   }
 
   deletePost(id: number): Observable<void> {
@@ -27,6 +39,10 @@ export class PostService { //todo create interface
 
   findPostById(id: number): Observable<Post> {
     return this.http.get<Post>('/api/posts/' + id);
+  }
+
+  findPostsByTags(tags: string): Observable<Post[]> {
+    return this.http.get<Post[]>('/api/posts/tags?title=' + tags);
   }
 
   findPostByTitle(title: string): Observable<Post> {

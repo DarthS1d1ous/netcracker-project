@@ -2,7 +2,10 @@ package com.netcracker.edu.fapi.models;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.validator.constraints.NotBlank;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
@@ -10,12 +13,17 @@ import java.util.Set;
 
 public class Post {
     private long id;
+    @NotEmpty(message = "Photo is mandatory")
     private String photoPath;
+    @NotNull
     private String description;
+    @NotNull(message = "Time creation is mandatory")
     private Timestamp timeCreation;
+    @NotNull
     private String title;
 
 
+    @NotNull(message = "User is mandatory")
     private User user;
     private Set<Tag> postTags;
     private Set<User> userLikes;

@@ -35,6 +35,13 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    public List<Comment> findCommentsByPostId(long postId){
+        RestTemplate restTemplate = new RestTemplate();
+        Comment[] comment = restTemplate.getForObject(backendServerUrl+"/api/comments/post/" + postId, Comment[].class);
+        return comment == null ? Collections.emptyList() : Arrays.asList(comment);
+    }
+
+    @Override
     public Comment saveComment(Comment comment) {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForEntity(backendServerUrl + "/api/comments", comment, Comment.class).getBody();

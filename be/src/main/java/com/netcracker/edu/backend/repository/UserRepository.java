@@ -20,4 +20,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     Optional<User> findById(long id);
 
+    @Query(value = "select u.username from User u where u.username = ?1")
+    String findUsernameIfExists(String username);
+
+    @Query(value = "select count(post_id) from likes where user_id = ?1", nativeQuery = true)
+    Integer findUserLikesCount(long id);
 }

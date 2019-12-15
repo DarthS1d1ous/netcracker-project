@@ -15,6 +15,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {CreatePostComponent} from "./components/createPost/createPost.component";
 import {MainPostComponent} from "../main/components/main-post/main-post.component";
+import {ProfileComponent} from "./components/profile/profile.component";
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import {MainPostComponent} from "../main/components/main-post/main-post.componen
     BillingDetailsViewComponent,
     SinglePostComponent,
     LoginComponent,
-    CreatePostComponent
+    CreatePostComponent,
+    ProfileComponent
   ],
   imports: [
     BillingAccountModule,
@@ -39,6 +41,6 @@ import {MainPostComponent} from "../main/components/main-post/main-post.componen
     ReactiveFormsModule,
   ],
   providers: [],
-  exports: [HomeComponent, NotFoundComponent, BillingDetailsViewComponent, SinglePostComponent, LoginComponent, CreatePostComponent]
+  exports: [HomeComponent, NotFoundComponent, BillingDetailsViewComponent, SinglePostComponent, LoginComponent, CreatePostComponent, ProfileComponent]
 })
 export class LayoutModule {}

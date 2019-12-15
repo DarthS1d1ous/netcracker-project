@@ -27,7 +27,7 @@ public class TagServiceImpl implements TagService {
     @Override
     public Tag findByTitle(String title) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl+"/api/tags/?title=" + title, Tag.class);
+        return restTemplate.getForObject(backendServerUrl+"/api/tags/tag?title=" + title, Tag.class);
     }
 
     @Override

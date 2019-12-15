@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -43,6 +44,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findPostLikeByUserId(long postId, long userId) {
         return userRepository.findPostLikeByUserId(postId, userId);
+    }
+
+    @Override
+    public String findUsernameIfExists(String username) {
+        return userRepository.findUsernameIfExists(username);
+    }
+
+    @Override
+    public Integer findUserLikesCount(long id) {
+        return  userRepository.findUserLikesCount(id);
     }
 }
 

@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {Observable, Subscription} from "rxjs";
 import {tap} from "rxjs/operators";
-import {Post} from "../../../../../models/post/post";
+import {Post} from "../../../../../models/post";
 import {PostService} from "../../../../../services/post.service";
 
 @Component({
@@ -25,8 +25,9 @@ export class MiniPostComponent implements OnInit {
   }
 
   checkMainPhoto() {
-    if (this.post.user.mainPhoto === "") {
+    if (this.post.user.mainPhoto == null) {
       this.imageSrc = "../../../../../../assets/images/default-user-icon.png"
     } else this.imageSrc = "data:image/png;base64," + this.post.user.mainPhoto;
   }
+
 }

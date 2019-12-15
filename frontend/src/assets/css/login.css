@@ -16,6 +16,13 @@ body {
   position: absolute;
 }
 
+.error {
+  color: red;
+  display: flex;
+  padding: 1.75em 2em;
+  justify-content: center;
+}
+
 .container {
   width: 100%;
   padding-top: 60px;

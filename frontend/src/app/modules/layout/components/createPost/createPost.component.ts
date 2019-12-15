@@ -4,9 +4,10 @@ import {Observable, Subscription} from "rxjs";
 import {PostService} from "../../../../services/post.service";
 import {Router} from "@angular/router";
 import {TagService} from "../../../../services/tag.service";
-import {Tag} from "../../../../models/tag/tag";
-import {Post} from "../../../../models/post/post";
+import {Tag} from "../../../../models/tag";
+import {Post} from "../../../../models/post";
 import {tap} from "rxjs/operators";
+import {StorageService} from "../../../../services/storage.service";
 
 
 @Component({
@@ -17,20 +18,17 @@ export class CreatePostComponent implements OnInit {
 
   base64ImageTextString: string;
   createPostForm: FormGroup;
-  allTags: Tag[];
   postTags: Tag[] = [];
   private subscriptions: Subscription[] = [];
 
   constructor(private formBuilder: FormBuilder, private postService: PostService,
-              private router: Router, private tagsService: TagService) {
+              private router: Router, private storageService: StorageService) {
   }
 
   ngOnInit() {
-    console.log(JSON.parse(localStorage.getItem("user")));
-    this.getAllTags();
     this.createPostForm = this.formBuilder.group({
       "title": [''],
-      "tags": ['', Validators.pattern("^(#[0-9A-Za-z]+)*$")],
+      "postTags": ['', Validators.pattern("^(#[0-9A-Za-z]+)*$")],
       "photoPath": ['', [Validators.required]],
       "description": [''],
       "user": [''],
@@ -41,23 +39,22 @@ export class CreatePostComponent implements OnInit {
 
   onCreate(post) {
     post.timeCreation = new Date();
-    post.user = JSON.parse(localStorage.getItem("user"));
-    post.description = 'Anime (pronounced AH-nee-may ) is a term for a style of Japanese comic book and video cartoon animation in which the main characters have large doe-like eyes. Many Web sites are devoted to anime. Anime is the prevalent style in Japanese comic books or manga . In Japan, the comic book is a popular form of entertainment for adults as well as for younger audiences. Story lines are often very sophisticated and complex and extend into episodic series. Typical anime themes or genres include Ninja and other martial arts; the supernatural or horror story; the romance; and science fiction including robots and space ships. Foils for the main characters, including robots, monsters, or just plain bad people, often lack the doe-eyed quality.'
-    this.saveTags(post.tags);
+    post.user = this.storageService.getCurrentUser();
     this.savePost(post);
-    this.base64ImageTextString = null;
-    this.createPostForm.reset()
-    this.router.navigate(['/home'])
   }
 
   savePost(post) {
-    let tags = this.splitTags(post.tags);
-    tags.forEach(tag => {
-      this.getTagByTitle(tag.toLowerCase());
-    })
+    let tags = post.postTags;
+    post.postTags = [];
+    this.splitTags(tags).forEach(tag => {
+      let tmpTag = new Tag();
+      tmpTag.title = tag;
+      post.postTags.push(tmpTag);
+    });
     post.photoPath = this.base64ImageTextString;
-    this.postService.savePost(post).subscribe(post => {
-      this.saveTagsForPost(post, this.postTags);
+    console.log(post.postTags);
+    this.postService.createPost(post).subscribe(post => {
+      this.router.navigate(['/home'])
     });
   }
 
@@ -80,40 +77,8 @@ export class CreatePostComponent implements OnInit {
     this.base64ImageTextString = btoa(binaryString);
   }
 
-  saveTags(postTags: string){
-    if (postTags != '') {
-      this.getAllTags();
-      let tags = this.splitTags(postTags);
-      tags.forEach(newTag => {
-        if (!this.allTags.filter(tag => newTag.toLowerCase() === tag.title.toLowerCase()).length) {
-          let tmpTag = new Tag();
-          tmpTag.title = newTag;
-          this.tagsService.saveTag(tmpTag).subscribe();
-        }
-      })
-    }
-  }
-
-  saveTagsForPost(post: Post, tags: Tag[]) {
-    tags.forEach(tag => {
-      this.postService.saveTag(post.id, tag.id).subscribe();
-    })
-  }
-
-  getAllTags() {
-    this.tagsService.getTags().subscribe(tags => {
-      this.allTags = tags as Tag[];
-    })
-  }
-
-  getTagByTitle(title: string) {
-    this.tagsService.getTagByTitle(title).subscribe(tag => {
-      console.log(tag)
-      this.postTags.push(tag);
-    })
-  }
-
   splitTags(tags): string[] {
+    console.log(tags.split("#").filter(tag => tag != ''));
     return tags.split("#").filter(tag => tag != '');
   }
 

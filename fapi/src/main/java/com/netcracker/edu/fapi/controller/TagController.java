@@ -21,7 +21,7 @@ public class TagController {
         return tagService.findAllTags();
     }
 
-    @GetMapping("/")
+    @GetMapping("/tag")
     public Tag getTagByTitle(@RequestParam(value = "title") String title) {
         return tagService.findByTitle(title);
     }

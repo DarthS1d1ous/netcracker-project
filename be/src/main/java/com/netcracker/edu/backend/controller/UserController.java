@@ -17,16 +17,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private PostService postService;
-
-//    @RequestMapping(value = "/{username}", method = RequestMethod.GET)
-//    public ResponseEntity<User> getByUsername(@PathVariable(name = "username") String username) {
-//        User user = userService.findByUsername(username);
-//        return ResponseEntity.ok(user);
-//    }
-
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
     public ResponseEntity<User> getByUsername(@RequestParam(value = "username") String username) {
         Optional<User> user = userService.findByUsername(username);
         return user.isPresent() ? ResponseEntity.ok(user.get()) : ResponseEntity.notFound().build();
@@ -51,5 +42,15 @@ public class UserController {
     public ResponseEntity<User> getUserById(@PathVariable(name = "id") Long id) {
         Optional<User> user = userService.findById(id);
         return user.isPresent() ? ResponseEntity.ok(user.get()) : ResponseEntity.notFound().build();
+    }
+
+    @RequestMapping(value = "/username/{username}", method = RequestMethod.GET)
+    public String getUsernameIfExists(@PathVariable(name = "username") String username){
+        return this.userService.findUsernameIfExists(username);
+    }
+
+    @RequestMapping(value = "/likes/count/{id}", method = RequestMethod.GET)
+    public Integer findUserLikesCount(@PathVariable(name = "id") long id){
+        return userService.findUserLikesCount(id);
     }
 }

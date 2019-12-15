@@ -1,10 +1,7 @@
 package com.netcracker.edu.backend.entity;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Set;
@@ -17,7 +14,6 @@ public class Post {
     private long id;
     @Column(name = "photo_path")
     private String photoPath;
-//    @Column(nullable = false)
     private String description;
     @Column(name = "time_creation")
     private Timestamp timeCreation;
@@ -27,19 +23,19 @@ public class Post {
     @ManyToOne(optional = false)
     @JoinColumn(name = "user_id")
     private User user;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "posts_has_tags",
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
     private Set<Tag> postTags;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable(
             name = "likes",
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<User> userLikes;
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", fetch = FetchType.LAZY)
     private Set<Comment> comments;
 
     public long getId() {
@@ -106,13 +102,13 @@ public class Post {
         this.userLikes = userLikes;
     }
 
-    public Set<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(Set<Comment> comments) {
-        this.comments = comments;
-    }
+//    public Set<Comment> getComments() {
+//        return comments;
+//    }
+//
+//    public void setComments(Set<Comment> comments) {
+//        this.comments = comments;
+//    }
 
     public Post(String photoPath, String description, Timestamp timeCreation, String title, User user) {
         this.photoPath = photoPath;
@@ -137,13 +133,13 @@ public class Post {
                 Objects.equals(title, post.title) &&
                 Objects.equals(user, post.user) &&
                 Objects.equals(postTags, post.postTags) &&
-                Objects.equals(userLikes, post.userLikes) &&
-                Objects.equals(comments, post.comments);
+                Objects.equals(userLikes, post.userLikes);
+//                Objects.equals(comments, post.comments);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, photoPath, description, timeCreation, title, user, postTags, userLikes, comments);
+        return Objects.hash(id, photoPath, description, timeCreation, title, user, postTags, userLikes);
     }
 
     @Override

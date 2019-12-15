@@ -10,16 +10,19 @@
     </div>
     <div ng-app ng-init="checked = false">
       <form class="form-signin" action="" method="post" name="form">
-        <label for="username">Username</label>
-        <input class="form-styling" type="text" name="username" />
-        <label for="password">Password</label>
-        <input class="form-styling" type="text" name="password" />
-        <input type="checkbox" id="checkbox"/>
-        <label for="checkbox"><span class="ui"></span>Keep me signed in</label>
-        <button type="submit" class="btn-signup">Sign In</button>
+        <label for="inputUsername">Username</label>
+        <input (focus)="showCheckYourSetDataAlert = false" class="form-styling" type="text" name="inputUsername" id="inputUsername" [(ngModel)]="loginModel.username" />
+        <label for="inputPassword">Password</label>
+        <input (focus)="showCheckYourSetDataAlert = false" class="form-styling" type="password" name="inputPassword" id="inputPassword" [(ngModel)]="loginModel.password" />
+        <!--<input type="checkbox" id="checkbox"/>-->
+        <!--<label for="checkbox"><span class="ui"></span>Keep me signed in</label>-->
+        <button type="submit" class="btn-signup" (click)="onSignIn(loginModel)">Sign In</button>
+        <div *ngIf="showCheckYourSetDataAlert" class="error">
+          Invalid login or password!
+        </div>
       </form>
 
-      <form class="form-signup" [formGroup]="signUpForm" (ngSubmit)="onSubmit(signUpForm.value)" action="" method="post" name="form">
+      <form class="form-signup" [formGroup]="signUpForm" (ngSubmit)="onSignUp(signUpForm.value)" action="" method="post" name="form">
         <label for="name">Name</label>
         <input class="form-styling" type="text" formControlName="name" id="name">
         <div class="invalid" *ngIf="signUpForm.get('name').invalid && signUpForm.get('name').touched">
@@ -58,12 +61,15 @@
         <label for="mainPhoto">Load avatar</label>
         <input class="" type="file" name="mainPhoto" formControlName="mainPhoto" id="mainPhoto" (change)="handleFileSelect($event)"/>
         <button type="submit" class="btn-signup" [disabled]="signUpForm.invalid">Sign Up</button>
+        <div class="invalid" *ngIf="checkUsername">
+          This username is already in use.
+        </div>
       </form>
 
     </div>
 
     <div class="forgot">
-      <a href="#">Forgot your password?</a>
+      <a>Forgot your password?</a>
     </div>
   </div>
 </div>

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 //AuthenticationController has API exposed to generate JWT token
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/token")
+@RequestMapping("/api/token")
 public class AuthenticationController {
 
     @Autowired
@@ -31,6 +31,7 @@ public class AuthenticationController {
                         loginUser.getPassword()
                 )
         );
+        System.out.println(loginUser);
         SecurityContextHolder.getContext().setAuthentication(authentication);
         final String token = tokenProvider.generateToken(authentication);
         return ResponseEntity.ok(new AuthToken(token));

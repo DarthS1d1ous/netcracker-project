@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     public User findByUsername(String username) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl+"/api/users/?username=" + username, User.class);
+        return restTemplate.getForObject(backendServerUrl+"/api/users/user?username=" + username, User.class);
     }
 
     @Override
@@ -56,28 +56,12 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         restTemplate.delete(backendServerUrl + "/api/users/" + id);
     }
 
+    @Override
+    public String getUsernameIfExists(String username){
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(backendServerUrl+"/api/users/username/" + username, String.class);
+    }
 
-//    @Override
-//    public User findByLogin(String login) {
-//        RestTemplate restTemplate = new RestTemplate();
-//        User user = restTemplate.getForObject(backendServerUrl + "/api/user/login/" + login, User.class);
-//        return user;
-//    }
-//
-//    @Override
-//    public List<User> findAll() {
-//        RestTemplate restTemplate = new RestTemplate();
-//        User[] usersResponse = restTemplate.getForObject(backendServerUrl + "/api/user", User[].class);
-//        return usersResponse == null ? Collections.emptyList() : Arrays.asList(usersResponse);
-//    }
-//
-//    @Override
-//    public User save(User user) {
-//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-//        RestTemplate restTemplate = new RestTemplate();
-//        return restTemplate.postForEntity(backendServerUrl + "/api/user", user, User.class).getBody();
-//    }
-//
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = findByUsername(username);
@@ -87,9 +71,16 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthority(user));
     }
 
+    @Override
+    public Integer findUserLikesCount(long id){
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(backendServerUrl +  "/api/users/likes/count/" + id, Integer.class);
+    }
+
     private Set<SimpleGrantedAuthority> getAuthority(User user) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole()));
+        authorities.add(new SimpleGrantedAuthority("ROLE_" + user.getRole().getTitle()));
+        System.out.println("authorities =" + authorities);
         return authorities;
     }
 

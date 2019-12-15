@@ -1,11 +1,10 @@
-import { NgModule } from "@angular/core";
+import {NgModule} from "@angular/core";
 import {MainComponent} from "./components/main.component";
 import {MainPostComponent} from "./components/main-post/main-post.component";
 import {CommonModule} from "@angular/common";
 import {RouterModule} from "@angular/router";
 import {NgxPaginationModule} from "ngx-pagination";
 import {FormsModule} from "@angular/forms";
-
 
 @NgModule({
   declarations: [
@@ -21,4 +20,5 @@ import {FormsModule} from "@angular/forms";
   providers: [],
   exports: [MainComponent, MainPostComponent]
 })
-export class MainModule {}
+export class MainModule {
+}

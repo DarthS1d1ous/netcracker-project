@@ -16,7 +16,7 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/role", method = RequestMethod.GET)
     private ResponseEntity<Role> getByTitle(@RequestParam(value = "title") String title) {
         Optional<Role> role = roleService.findByTitle(title);
         return role.isPresent() ? ResponseEntity.ok(role.get()) : ResponseEntity.notFound().build();

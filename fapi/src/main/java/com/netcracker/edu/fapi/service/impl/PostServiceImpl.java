@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Service("customPostDetailsService")
@@ -37,9 +38,36 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public List<Post> findPostsByTags(List<String> tags) {
+        RestTemplate restTemplate = new RestTemplate();
+        Post[] posts = restTemplate.getForObject(backendServerUrl + "/api/posts/tags?title=" + tags, Post[].class);
+        return posts == null ? Collections.emptyList() : Arrays.asList(posts);
+    }
+
+    @Override
+    public List<Post> findMostLikedPosts(){
+        RestTemplate restTemplate = new RestTemplate();
+        Post[] posts = restTemplate.getForObject(backendServerUrl + "/api/posts/mostByLikes", Post[].class);
+        return posts == null ? Collections.emptyList() : Arrays.asList(posts);
+    }
+
+    @Override
     public Post savePost(Post post) {
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.postForEntity(backendServerUrl + "/api/posts", post, Post.class).getBody();
+    }
+
+    @Override
+    public Post createPost(Post post) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.postForEntity(backendServerUrl + "/api/posts/create", post, Post.class).getBody();
+    }
+
+    @Override
+    public List<Post> findPostsByUserId(long userId){
+        RestTemplate restTemplate = new RestTemplate();
+        Post[] posts = restTemplate.getForObject(backendServerUrl+"/api/posts/user/" + userId, Post[].class);
+        return posts == null ? Collections.emptyList() : Arrays.asList(posts);
     }
 
     @Override

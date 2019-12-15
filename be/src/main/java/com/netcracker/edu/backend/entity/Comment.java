@@ -24,7 +24,7 @@ public class Comment {
         this.timeCreation = timeCreation;
         this.message = message;
         this.user = user;
-//        this.post = post;
+        this.post = post;
     }
 
     public Comment() {
@@ -62,13 +62,13 @@ public class Comment {
         this.user = user;
     }
 
-//    public Post getPost() {
-//        return post;
-//    }
-//
-//    public void setPost(Post post) {
-//        this.post = post;
-//    }
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -78,11 +78,12 @@ public class Comment {
         return id == comment.id &&
                 Objects.equals(timeCreation, comment.timeCreation) &&
                 Objects.equals(message, comment.message) &&
+                Objects.equals(post, comment.post) &&
                 Objects.equals(user, comment.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, timeCreation, message, user);
+        return Objects.hash(id, timeCreation, message, user, post);
     }
 }

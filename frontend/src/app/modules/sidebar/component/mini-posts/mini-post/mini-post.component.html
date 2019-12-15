@@ -2,7 +2,7 @@
   <header>
     <h3><a [routerLink]="['/posts', post.id]">{{post.title}}</a></h3>
     <time class="published" datetime="2015-10-20">{{date | date: format}}</time>
-    <a class="author"><img src={{imageSrc}} alt=""/></a>
+    <a class="author" [routerLink]="['/profile',post.user.id]"><img src={{imageSrc}} alt=""/></a>
   </header>
   <a [routerLink]="['/posts', post.id]" class="image"><img src="data:image/png;base64,{{post.photoPath}}" alt=""/></a>
 </article>

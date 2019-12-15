@@ -1,4 +1,4 @@
-<article [class.singlePost]="singlePost" [class.mainPost]="mainPost" class="post">
+<article [class.singlePost]="singlePost" [class.mainPost]="mainPost" *ngIf="post" class="post">
   <header>
     <div class="title">
       <h2><a [routerLink]="['/posts', post.id]">{{post.title}}</a></h2>
@@ -6,40 +6,49 @@
     </div>
     <div class="meta">
       <time class="published" datetime="2015-11-01">{{date | date: format}}</time>
-      <a href="#" class="author"><span class="name">{{post.user.name}} {{post.user.surname}}</span>
-        <div class="mainImage">
+      <a [routerLink]="['/profile',post.user.id]" class="author"><span
+        class="name">{{post.user.name}} {{post.user.surname}}</span>
+        <div class="mainImage" [routerLink]="['/profile', post.user.id]">
           <img src="{{checkMainPhoto(post.user.mainPhoto)}}" alt=""/>
         </div>
       </a>
     </div>
+    <i class="material-icons deletePost" (click)="deletePost()"
+       *ngIf="(user.id == post.user.id || (user.role.title.toLowerCase() === 'admin' && post.user.role.title.toLowerCase() != 'admin')) && singlePost">
+      close
+    </i>
   </header>
   <a [routerLink]="['/posts', post.id]" class="image featured"><img src="data:image/png;base64,{{post.photoPath}}"
                                                                     alt=""/></a>
   <p>{{post.description}}</p>
   <footer>
-    <!--<ul class="actions">-->
-    <!--<li><a [routerLink]="['/single', post.id]" class="button large">Continue Reading</a></li>-->
-    <!--</ul>-->
     <ul class="stats">
-      <!--<li><a href="#">General</a></li>-->
       <li><a class="icon solid fa-heart" [class.active]="postLikedByUser"
-             (click)="putLike()">{{post.userLikes.length}}</a></li>
-      <li><a class="icon solid fa-comment" [routerLink]="['/posts', post.id]">{{post.comments.length}}</a></li>
+             (click)="putLike()">{{postLikesCount}}</a></li>
+      <li><a class="icon solid fa-comment" [routerLink]="['/posts', post.id]">{{postComments.length}}</a></li>
     </ul>
-    <div *ngIf="singlePost && post.comments.length!=0" class="comments">
-      <div class="comment" *ngFor="let comment of  post.comments">
-        <div class="mainImage author">
-          <img src="{{checkMainPhoto(comment.user.mainPhoto)}}" alt=""/>
-        </div>
-        <p class="commentUsername">{{comment.user.username}}</p>
+    <div *ngIf="singlePost && postComments.length!=0" class="comments">
+      <div class="comment" *ngFor="let comment of  postComments">
+        <i class="material-icons deleteComment" (click)="deleteComment(comment.id)"
+           *ngIf="(user.id == post.user.id || (user.role.title.toLowerCase() === 'admin' && post.user.role.title.toLowerCase() != 'admin')) && singlePost">
+          close
+        </i>
+        <a [routerLink]="['/profile',comment.user.id]">
+          <div class="mainImage author">
+            <img src="{{checkMainPhoto(comment.user.mainPhoto)}}" alt=""/>
+          </div>
+          <p class="commentUsername">{{comment.user.name}} {{comment.user.surname}}</p>
+        </a>
         <p class="commentMessage">{{comment.message}}</p>
         <p>{{comment.timeCreation | date: format}}</p>
         <div class="clear-fix"></div>
       </div>
     </div>
     <div *ngIf="singlePost">
-      <textarea name="comment" [(ngModel)]="comment" placeholder="Comment" ></textarea>
-      <button type="submit" class="addComment" (click)="addComment(comment)">Publish</button>
+      <textarea name="comment" [(ngModel)]="comment" placeholder="Comment" id="commentTextArea"></textarea>
+      <button type="submit" class="addComment" (click)="addComment(comment); resetTextArea('commentTextArea')"
+              [disabled]="comment.trim() ==''">Publish
+      </button>
     </div>
   </footer>
 </article>

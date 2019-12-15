@@ -1,11 +1,11 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-import { BsDropdownModule } from "ngx-bootstrap/dropdown";
-import { TooltipModule } from "ngx-bootstrap/tooltip";
-import { ModalModule } from "ngx-bootstrap/modal";
-import { FormsModule } from "@angular/forms";
+import {BrowserModule} from "@angular/platform-browser";
+import {NgModule} from "@angular/core";
+import {BsDropdownModule} from "ngx-bootstrap/dropdown";
+import {TooltipModule} from "ngx-bootstrap/tooltip";
+import {ModalModule} from "ngx-bootstrap/modal";
+import {FormsModule} from "@angular/forms";
 
-import { AppComponent } from "./app.component";
+import {AppComponent} from "./app.component";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {Ng4LoadingSpinnerModule} from "ng4-loading-spinner";
 import {RouterModule, Routes} from "@angular/router";
@@ -19,22 +19,26 @@ import {LoginComponent} from "./modules/layout/components/login/login.component"
 import {CreatePostComponent} from "./modules/layout/components/createPost/createPost.component";
 
 import {NgxPaginationModule} from 'ngx-pagination';
-import {LoaderInterceptorService} from "./services/loader-interceptor.service";
-import {MainPostComponent} from "./modules/main/components/main-post/main-post.component";
+import {APIInterceptor} from "./interceptors/api-interceptor";
+import {UserService} from "./services/user.service";
+import {ProfileComponent} from "./modules/layout/components/profile/profile.component";
+import {LoginGuard} from "./services/login.guard";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatDialogModule} from '@angular/material/dialog';
 
 const appRoutes: Routes = [
-  {path: "", component: HomeComponent},
-  {path: "home", component: HomeComponent},
+  {path: "", component: HomeComponent, canActivate: [LoginGuard]},
+  {path: "home", component: HomeComponent, canActivate: [LoginGuard]},
   {path: "login", component: LoginComponent},
-  {path: "posts/:id", component: SinglePostComponent},
-  {path: "createPost", component: CreatePostComponent},
+  {path: "posts/:id", component: SinglePostComponent, canActivate: [LoginGuard]},
+  {path: "createPost", component: CreatePostComponent, canActivate: [LoginGuard]},
+  {path: "profile/:id", component: ProfileComponent, canActivate: [LoginGuard]},
   {path: "**", component: NotFoundComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    // LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -50,13 +54,12 @@ const appRoutes: Routes = [
     MainModule,
     NgxPaginationModule
   ],
-  providers: [
-   /* {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LoaderInterceptorService,
-      multi: true
-    }*/
-  ],
+  providers: [UserService, APIInterceptor, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: APIInterceptor,
+    multi: true
+  }, LoginGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

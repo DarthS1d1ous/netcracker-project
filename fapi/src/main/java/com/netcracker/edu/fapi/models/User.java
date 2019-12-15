@@ -1,20 +1,39 @@
 package com.netcracker.edu.fapi.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Set;
 
 public class User {
     private long id;
+    @NotEmpty
+    @Pattern(regexp = "^(?!.*@.*@.*$)(?!.*@.*--.*\\..*$)(?!.*@.*-\\..*$)(?!.*@.*-$)(.*@.+(\\..{1,11})?)$")
     private String email;
+    @NotEmpty
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{6,}$")
     private String password;
+    @NotEmpty
+    @Pattern(regexp = "(^[A-Z][a-z]{1,20}$)|(^[А-Я][а-я]{1,20}$)")
     private String name;
+    @NotNull
     private Timestamp timeRegistration;
+    @NotEmpty
+    @Pattern(regexp = "(^[A-Z][a-z]{1,20}$)|(^[А-Я][а-я]{1,20}$)")
     private String surname;
+    @NotEmpty
+    @Pattern(regexp = "(^(?!\\+.*\\(.*\\).*--.*$)(?!\\+.*\\(.*\\).*-$)(\\+[0-9]{1,7}([-0-9]{0,8})?([0-9]?)?)$)|(^[0-9]{1,4}$)")
     private String phone;
+    @NotEmpty
+    @Pattern(regexp = "^[A-Za-z][0-9A-Za-z]{1,15}$")
     private String username;
     private String mainPhoto;
 
+    @NotNull
     private Role role;
 
 //    private Set<Post> posts;
@@ -37,7 +56,6 @@ public class User {
         this.username = username;
         this.mainPhoto = mainPhoto;
     }
-
 
 
     public User() {

@@ -13,4 +13,6 @@ public interface UserService {
     User saveUser(User User);
     void deleteUser(long id);
     User findPostLikeByUserId(long postId, long userId);
+    String findUsernameIfExists(String username);
+    Integer findUserLikesCount(long id);
 }

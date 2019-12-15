@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -28,13 +29,18 @@ public class CommentController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json")
-    public Comment saveComment(@RequestBody Comment comment) {
+    public Comment saveComment(@Valid @RequestBody Comment comment) {
         return commentService.saveComment(comment);
     }
+
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public void deleteComment(@PathVariable(name = "id") long id) {
         commentService.deleteComment(id);
     }
-    
+
+    @RequestMapping(value = "/post/{postId}", method = RequestMethod.GET)
+    public List<Comment> findCommentsByPostId(@PathVariable(name = "postId") long postId){
+        return commentService.findCommentsByPostId(postId);
+    }
 }

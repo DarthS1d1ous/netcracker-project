@@ -1,0 +1,42 @@
+<div id="wrapper">
+  <app-header></app-header>
+  <div class="profile" *ngIf="userProfile && currentUser">
+    <div class="mainInformation">
+      <div class="mainPhoto">
+        <div>
+          <img src="{{checkMainPhoto(userProfile.mainPhoto)}}">
+        </div>
+      </div>
+      <div class="information">
+        <div>
+          <p class="fullName">{{userProfile.name}} {{userProfile.surname}}</p>
+          <!--<button class="settings" [class.subscribe]="!subscription" *ngIf="userProfile.id!=currentUser.id"-->
+          <!--(click)="subscribe()">{{buttonSubscriptionTitle}}</button>-->
+          <button class="settings"
+                  *ngIf="currentUser.role.title.toLowerCase() === 'admin' && userProfile.id!=currentUser.id
+                  && userProfile.role.title.toLowerCase() != 'admin'"
+                  (click)="deleteUser()">Delete user
+          </button>
+        </div>
+        <div class="mainStatistics">
+          <p>Publications: {{posts.length}}</p>
+          <p>Subscribers: {{userProfile.subscribers.length}}</p>
+          <p>Subscriptions: {{userProfile.subscriptions.length}}</p>
+          <p>User likes count: {{userLikesCount}}</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <p class="publications">Publications</p>
+      <div class="profilePosts">
+        <div *ngFor="let post of posts">
+          <div class="profilePost">
+            <a [routerLink]="['/posts', post.id]">
+              <img src="data:image/png;base64,{{post.photoPath}}">
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

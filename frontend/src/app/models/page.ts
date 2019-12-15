@@ -1,4 +1,4 @@
-import {Post} from "../post/post";
+import {Post} from "./post";
 
 export interface Page {
   content: Post[],

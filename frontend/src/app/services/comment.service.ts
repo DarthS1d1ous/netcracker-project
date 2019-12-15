@@ -1,7 +1,7 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {Comment} from "../models/comment/comment";
+import {Comment} from "../models/comment";
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,10 @@ import {Comment} from "../models/comment/comment";
 export class CommentService { //todo create interface
 
   constructor(private http: HttpClient) {
+  }
+
+  getCommentsByPostId(postId: number): Observable<Comment[]> {
+    return this.http.get<Comment[]>('/api/comments/post/' + postId);
   }
 
   getComments(): Observable<Comment[]> {
@@ -19,7 +23,7 @@ export class CommentService { //todo create interface
     return this.http.post<Comment>('/api/comments', comment);
   }
 
-  deleteComment(id: string): Observable<void> {
+  deleteComment(id: number): Observable<void> {
     return this.http.delete<void>('/api/comments/' + id);
   }
 

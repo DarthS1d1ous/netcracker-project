@@ -1,19 +1,26 @@
 package com.netcracker.edu.fapi.models;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
 public class Comment {
     private long id;
+    @NotNull
     private Timestamp timeCreation;
+    @NotEmpty
     private String message;
+    @NotNull
     private User user;
+    @NotNull
     private Post post;
 
     public Comment(Timestamp timeCreation, String message, User user, Post post) {
         this.timeCreation = timeCreation;
-        this.message = message;
+        this.message = message.trim();
         this.user = user;
         this.post = post;
     }

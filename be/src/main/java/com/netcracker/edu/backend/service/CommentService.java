@@ -11,4 +11,5 @@ public interface CommentService {
     Optional<Comment> findById(long id);
     Comment saveComment(Comment Comment);
     void deleteComment(long id);
+    List<Comment> findCommentsByPostId(long postId);
 }

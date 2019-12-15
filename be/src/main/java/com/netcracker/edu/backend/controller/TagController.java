@@ -15,7 +15,7 @@ public class TagController {
     @Autowired
     private TagService tagService;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/tag", method = RequestMethod.GET)
     public ResponseEntity<Tag> getByTitle(@RequestParam(value = "title") String title) {
         Optional<Tag> tag = tagService.findByTitle(title);
         return tag.isPresent() ? ResponseEntity.ok(tag.get()) : ResponseEntity.notFound().build();

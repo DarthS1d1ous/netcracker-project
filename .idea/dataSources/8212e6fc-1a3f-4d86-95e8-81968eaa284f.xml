@@ -1244,7 +1244,6 @@ user_id</ColNames>
     <column id="308" parent="283" name="description">
       <Position>3</Position>
       <DataType>longtext|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="309" parent="283" name="time_creation">
@@ -1279,6 +1278,8 @@ user_id</ColNames>
       <RefSchemaName>backend</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="315" parent="284" name="post_id">
       <Position>1</Position>
@@ -1311,12 +1312,16 @@ tag_id</ColNames>
       <RefSchemaName>backend</RefSchemaName>
       <RefTableName>posts</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="321" parent="284" name="fk_posts_has_tags_tags1">
       <ColNames>tag_id</ColNames>
       <RefSchemaName>backend</RefSchemaName>
       <RefTableName>tags</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="322" parent="285" name="id">
       <Position>1</Position>
@@ -1450,7 +1455,6 @@ user_id</ColNames>
     <column id="344" parent="288" name="main_photo">
       <Position>10</Position>
       <DataType>longtext|0s</DataType>
-      <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <index id="345" parent="288" name="fk_users_roles1_idx">
@@ -1467,6 +1471,8 @@ user_id</ColNames>
       <RefSchemaName>backend</RefSchemaName>
       <RefTableName>roles</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
     </foreign-key>
   </database-model>
 </dataSource>

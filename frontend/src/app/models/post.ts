@@ -1,6 +1,6 @@
-import {User} from "../user/user";
-import {Tag} from "../tag/tag";
-import {Comment} from "../comment/comment";
+import {User} from "./user";
+import {Tag} from "./tag";
+import {Comment} from "./comment";
 
 export interface Post {
 
@@ -11,7 +11,5 @@ export interface Post {
   title: string;
   user: User;
   postTags: Tag[];
-  comments: Comment[];
   userLikes: User[];
-
 }

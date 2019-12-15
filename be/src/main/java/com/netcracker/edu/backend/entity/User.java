@@ -1,31 +1,28 @@
 package com.netcracker.edu.backend.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users", schema = "backend")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class User implements Serializable {
+
     private long id;
     private String email;
     private String password;
     private String name;
-    @Column(name = "time_registration")
     private Timestamp timeRegistration;
     private String surname;
     private String phone;
     private String username;
-    @Column(name = "main_photo")
     private String mainPhoto;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
+
     private Role role;
 
 //    @JsonIgnore
@@ -40,19 +37,10 @@ public class User {
 //    @OneToMany(mappedBy = "user")
 //    private Set<Comment> comments;
 
-    @ManyToMany
-    @JoinTable(name = "subscriptions",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "subscription_id")
-    )
-    private Set<User> subscribers;
 
-    @ManyToMany
-    @JoinTable(name = "subscriptions",
-            joinColumns = @JoinColumn(name = "subscription_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    private Set<User> subscriptions;
+    private Set<User> subscribers = new HashSet<>();
+
+    private Set<User> subscriptions = new HashSet<>();
 
     public User(String email, String password, String name, Timestamp timeRegistration, String surname, String phone, String username, String mainPhoto) {
         this.email = email;
@@ -65,11 +53,10 @@ public class User {
         this.mainPhoto = mainPhoto;
     }
 
-
-
     public User() {
     }
 
+    @Column(name = "main_photo")
     public String getMainPhoto() {
         return mainPhoto;
     }
@@ -78,10 +65,8 @@ public class User {
         this.mainPhoto = mainPhoto;
     }
 
-    public void setSubscribers(Set<User> subscribers) {
-        this.subscribers = subscribers;
-    }
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public long getId() {
         return id;
     }
@@ -114,6 +99,7 @@ public class User {
         this.name = name;
     }
 
+    @Column(name = "time_registration")
     public Timestamp getTimeRegistration() {
         return timeRegistration;
     }
@@ -138,6 +124,8 @@ public class User {
         this.phone = phone;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "role_id")
     public Role getRole() {
         return role;
     }
@@ -178,20 +166,30 @@ public class User {
 //        this.comments = comments;
 //    }
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "subscriptions",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "subscription_id")
+    )
     public Set<User> getSubscribers() {
         return subscribers;
     }
 
-    public void setUsers(Set<User> subscribers) {
-        this.subscribers = subscribers;
-    }
-
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "subscriptions",
+            joinColumns = @JoinColumn(name = "subscription_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
     public Set<User> getSubscriptions() {
         return subscriptions;
     }
 
     public void setSubscriptions(Set<User> subscriptions) {
         this.subscriptions = subscriptions;
+    }
+
+    public void setSubscribers(Set<User> subscribers) {
+        this.subscribers = subscribers;
     }
 
     @Override
@@ -217,7 +215,7 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, password, name, timeRegistration, surname, phone, username, role, subscribers, subscriptions);
+        return Objects.hash(id, email, password, name, timeRegistration, surname, phone, username, role);
     }
 
     @Override
@@ -234,4 +232,20 @@ public class User {
                 ", role=" + role +
                 '}';
     }
+
+    public User userConverter(User user) {
+//        user.setSubscribers(user.getSubscribers().stream().peek(user1 -> {
+//            user1.setSubscribers(new HashSet<>());
+//            user1.setSubscriptions(new HashSet<>());
+//        }).collect(Collectors.toSet()));
+//        user.setSubscriptions(user.getSubscriptions().stream().peek(user1 -> {
+//            user1.setSubscribers(new HashSet<>());
+//            user1.setSubscriptions(new HashSet<>());
+//        }).collect(Collectors.toSet()));
+//        return user;
+        User userDTO = new User();
+        userDTO.setId(user.getId());
+        return userDTO;
+    }
 }
+

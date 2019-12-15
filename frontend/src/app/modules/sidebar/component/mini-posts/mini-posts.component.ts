@@ -1,5 +1,5 @@
 import {Component, OnInit} from "@angular/core";
-import {Post} from "../../../../models/post/post";
+import {Post} from "../../../../models/post";
 import {Subscription} from "rxjs";
 import {PostService} from "../../../../services/post.service";
 
@@ -19,9 +19,8 @@ export class MiniPostsComponent implements OnInit {
   }
 
   private loadPosts() {
-    this.subscriptions.push(this.postService.findPosts(0,4, "desc", "userLikes").subscribe(page => {
-      this.posts = page.content;
-      console.log(page.content);
+    this.subscriptions.push(this.postService.findMostLikedPosts().subscribe(posts => {
+      this.posts = posts;
     }));
   }
 

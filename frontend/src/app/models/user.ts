@@ -1,4 +1,5 @@
 import {Timestamp} from "rxjs";
+import {Role} from "./role";
 
 export interface User {
 
@@ -11,12 +12,12 @@ export interface User {
   phone: string;
   username: string;
   mainPhoto: string;
-  role: any;
+  role: Role;
   // posts: any[];
   // postLikes: any[];
   // comments: any[];
   subscribers: User[];
-  subscriptions:User[];
+  subscriptions: User[];
 
   // static cloneBase(user: User): User {
   //   const clonedUser: User = new User();
