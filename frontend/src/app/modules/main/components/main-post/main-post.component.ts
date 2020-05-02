@@ -84,6 +84,8 @@ export class MainPostComponent implements OnInit, OnDestroy {
       this.commentService.getCommentsByPostId(this.post.id).subscribe(comments => {
         this.postComments = comments;
         console.log(comments)
+        console.log(post.user.role)
+        console.log(this.user.role)
       });
     }));
   }

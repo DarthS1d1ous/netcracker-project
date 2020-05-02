@@ -1,7 +1,6 @@
 package com.netcracker.edu.fapi.service.impl;
 
 import com.netcracker.edu.fapi.models.User;
-
 import com.netcracker.edu.fapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -27,20 +26,20 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     public List<User> findAllUsers() {
         RestTemplate restTemplate = new RestTemplate();
-        User[] user = restTemplate.getForObject(backendServerUrl+"/api/users", User[].class);
+        User[] user = restTemplate.getForObject(backendServerUrl + "/api/users", User[].class);
         return user == null ? Collections.emptyList() : Arrays.asList(user);
     }
 
     @Override
     public User findByUsername(String username) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl+"/api/users/user?username=" + username, User.class);
+        return restTemplate.getForObject(backendServerUrl + "/api/users/user?username=" + username, User.class);
     }
 
     @Override
     public User findById(long id) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl+"/api/users/" + id, User.class);
+        return restTemplate.getForObject(backendServerUrl + "/api/users/" + id, User.class);
     }
 
     @Override
@@ -57,9 +56,21 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public String getUsernameIfExists(String username){
+    public void deleteSubscription(long subscriptionId, long userId) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl+"/api/users/username/" + username, String.class);
+        restTemplate.delete(backendServerUrl + "/api/users/" + userId + "/subscription/" + subscriptionId);
+    }
+
+    @Override
+    public void insertSubscription(long subscriptionId, long userId) {
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.postForEntity(backendServerUrl + "/api/users/" + userId + "/subscription/" + subscriptionId,null,Object.class);
+    }
+
+    @Override
+    public String getUsernameIfExists(String username) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(backendServerUrl + "/api/users/username/" + username, String.class);
     }
 
     @Override
@@ -72,9 +83,9 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     }
 
     @Override
-    public Integer findUserLikesCount(long id){
+    public Integer findUserLikesCount(long id) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl +  "/api/users/likes/count/" + id, Integer.class);
+        return restTemplate.getForObject(backendServerUrl + "/api/users/likes/count/" + id, Integer.class);
     }
 
     private Set<SimpleGrantedAuthority> getAuthority(User user) {

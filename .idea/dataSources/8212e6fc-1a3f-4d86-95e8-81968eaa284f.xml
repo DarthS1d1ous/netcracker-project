@@ -1176,7 +1176,6 @@
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <foreign-key id="298" parent="281" name="fk_comments_photos1">
       <ColNames>post_id</ColNames>
@@ -1184,7 +1183,6 @@
       <RefTableName>posts</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
-      <OnDelete>cascade</OnDelete>
     </foreign-key>
     <column id="299" parent="282" name="user_id">
       <Position>1</Position>
@@ -1372,12 +1370,14 @@ user_id</ColNames>
       <RefSchemaName>backend</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <foreign-key id="331" parent="286" name="user_id">
       <ColNames>user_id</ColNames>
       <RefSchemaName>backend</RefSchemaName>
       <RefTableName>users</RefTableName>
       <RefColNames>id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <column id="332" parent="287" name="id">
       <Position>1</Position>

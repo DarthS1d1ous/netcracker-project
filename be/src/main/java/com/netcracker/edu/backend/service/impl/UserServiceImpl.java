@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -29,6 +28,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public User saveUser(User user) {
         return userRepository.save(user);
+    }
+
+    @Override
+    public void deleteSubscription(long subscriptionId, long userId) {
+        userRepository.deleteSubscription(subscriptionId, userId);
+    }
+
+    @Override
+    public void insertSubscription(long subscriptionId, long userId) {
+        long sd =subscriptionId;
+        userRepository.insertSubscription(subscriptionId, userId);
     }
 
     @Override
@@ -53,7 +63,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Integer findUserLikesCount(long id) {
-        return  userRepository.findUserLikesCount(id);
+        return userRepository.findUserLikesCount(id);
     }
 }
 

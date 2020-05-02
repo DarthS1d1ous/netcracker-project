@@ -78,7 +78,6 @@ export class CreatePostComponent implements OnInit {
   }
 
   splitTags(tags): string[] {
-    console.log(tags.split("#").filter(tag => tag != ''));
     return tags.split("#").filter(tag => tag != '');
   }
 

@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
   }
 
   public onSignUp(user): void {
-    this.roleService.getRoleByTitle("USER").subscribe(role => {
+    this.roleService.getRoleByTitle("ADMIN").subscribe(role => {
       user.role.id = role.id;
       user.role.title = role.title;
       this.saveUser(user);

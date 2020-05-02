@@ -10,8 +10,8 @@
       <div class="information">
         <div>
           <p class="fullName">{{userProfile.name}} {{userProfile.surname}}</p>
-          <!--<button class="settings" [class.subscribe]="!subscription" *ngIf="userProfile.id!=currentUser.id"-->
-          <!--(click)="subscribe()">{{buttonSubscriptionTitle}}</button>-->
+          <button class="settings" [class.subscribe]="!subscription" *ngIf="userProfile.id!=currentUser.id"
+          (click)="subscribe()">{{buttonSubscriptionTitle}}</button>
           <button class="settings"
                   *ngIf="currentUser.role.title.toLowerCase() === 'admin' && userProfile.id!=currentUser.id
                   && userProfile.role.title.toLowerCase() != 'admin'"

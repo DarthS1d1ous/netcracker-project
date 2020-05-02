@@ -28,6 +28,15 @@ export class UserService { //todo create interface
     return this.http.get<User[]>('/api/users');
   }
 
+  deleteSubscription(subscriptionId: number, userId:number): Observable<void> {
+    return this.http.delete<void>('/api/users/' + userId + '/subscription/' + subscriptionId);
+  }
+
+  insertSubscription(subscriptionId: number, userId:number): Observable<void> {
+    return this.http.post<void>('/api/users/' + userId + '/subscription/' + subscriptionId,null);
+  }
+
+
   saveUser(user: User): Observable<User> {
     return this.http.post<User>('/api/users', user);
   }

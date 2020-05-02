@@ -23,12 +23,14 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
     List<Post> findPostsByUserIdOrderByTimeCreationDesc(long userId);
 
-    @Query(value = "select p.id, p.photo_path, p.description, p.time_creation, p.title, p.user_id from posts p INNER join likes l on p.id = l.post_id group by p.id order by count(l.post_id) desc limit 10", nativeQuery = true)
+    @Query(value = "select p.id, p.photo_path, p.description, p.time_creation, p.title, p.user_id from posts p " +
+            "INNER join likes l on p.id = l.post_id group by p.id order by count(l.post_id) desc limit 10", nativeQuery = true)
     List<Post> findMostLikedPosts();
 
     Optional<Post> findById(long id);
 
-    @Query(value = "select DISTINCT p.id, p.photo_path, p.description, p.time_creation, p.title, p.user_id from tags t left join posts_has_tags pht on t.id = pht.tag_id left join posts p on pht.post_id = p.id\n" +
+    @Query(value = "select DISTINCT p.id, p.photo_path, p.description, p.time_creation, p.title, p.user_id from tags t " +
+            "left join posts_has_tags pht on t.id = pht.tag_id left join posts p on pht.post_id = p.id\n" +
             "where t.title in :tags order by p.time_creation desc", nativeQuery = true)
     List<Post> findPostsByTags(List<String> tags);
 

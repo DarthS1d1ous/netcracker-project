@@ -20,4 +20,7 @@ public interface UserService {
 
     Integer findUserLikesCount(long id);
 
+    void deleteSubscription(long subscriptionId, long userId);
+
+    void insertSubscription(long subscriptionId, long userId);
 }

@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void delete(@PathVariable(name = "id") Long id) {
+    public void delete(@PathVariable(name = "id") long id) {
         userService.deleteUser(id);
     }
 
@@ -48,6 +48,17 @@ public class UserController {
     public String getUsernameIfExists(@PathVariable(name = "username") String username){
         return this.userService.findUsernameIfExists(username);
     }
+
+    @RequestMapping(value = "/{userId}/subscription/{subscriptionId}" ,method = RequestMethod.DELETE)
+    public void deleteSubscription(@PathVariable(name = "subscriptionId") long subscriptionId,@PathVariable(name = "userId") long userId){
+        userService.deleteSubscription(subscriptionId, userId);
+    }
+
+    @RequestMapping(value = "/{userId}/subscription/{subscriptionId}" ,method = RequestMethod.POST)
+    public void insertSubscription(@PathVariable(name = "subscriptionId") long subscriptionId,@PathVariable(name = "userId") long userId){
+        userService.insertSubscription(subscriptionId, userId);
+    }
+
 
     @RequestMapping(value = "/likes/count/{id}", method = RequestMethod.GET)
     public Integer findUserLikesCount(@PathVariable(name = "id") long id){

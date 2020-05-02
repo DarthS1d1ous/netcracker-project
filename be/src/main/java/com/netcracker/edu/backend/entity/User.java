@@ -172,7 +172,10 @@ public class User implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "subscription_id")
     )
     public Set<User> getSubscribers() {
-        return subscribers;
+        if (subscribers != null) {
+            return subscribers.stream().map(this::userConverter).collect(Collectors.toSet());
+        }
+        return null;
     }
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -181,7 +184,10 @@ public class User implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     public Set<User> getSubscriptions() {
-        return subscriptions;
+        if (subscriptions != null) {
+            return subscriptions.stream().map(this::userConverter).collect(Collectors.toSet());
+        }
+        return null;
     }
 
     public void setSubscriptions(Set<User> subscriptions) {
