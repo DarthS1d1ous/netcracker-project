@@ -3,9 +3,7 @@ package com.netcracker.edu.fapi.controller;
 
 import com.netcracker.edu.fapi.models.Comment;
 import com.netcracker.edu.fapi.service.CommentService;
-import com.netcracker.edu.fapi.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -40,7 +38,7 @@ public class CommentController {
     }
 
     @RequestMapping(value = "/post/{postId}", method = RequestMethod.GET)
-    public List<Comment> findCommentsByPostId(@PathVariable(name = "postId") long postId){
+    public List<Comment> findCommentsByPostId(@PathVariable(name = "postId") long postId) {
         return commentService.findCommentsByPostId(postId);
     }
 }

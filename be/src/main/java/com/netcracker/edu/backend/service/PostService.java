@@ -2,13 +2,10 @@ package com.netcracker.edu.backend.service;
 
 import com.netcracker.edu.backend.entity.Post;
 import com.netcracker.edu.backend.entity.User;
-import org.hibernate.mapping.Set;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 public interface PostService {
@@ -24,7 +21,7 @@ public interface PostService {
 
     List<User> findAllPostLikes(long id);
 
-    Long  findPostsCount();
+    Long findPostsCount();
 
     List<Post> findPostsByUserId(long userId);
 

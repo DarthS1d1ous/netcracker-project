@@ -1,7 +1,6 @@
 package com.netcracker.edu.fapi.models;
 
 import java.util.Objects;
-import java.util.Set;
 
 public class Tag {
     private long id;

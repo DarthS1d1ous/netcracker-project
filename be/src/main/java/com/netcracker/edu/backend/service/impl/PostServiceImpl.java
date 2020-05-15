@@ -8,29 +8,29 @@ import com.netcracker.edu.backend.repository.TagRepository;
 import com.netcracker.edu.backend.repository.UserRepository;
 import com.netcracker.edu.backend.service.CommentService;
 import com.netcracker.edu.backend.service.PostService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @Service
 public class PostServiceImpl implements PostService {
 
-    @Autowired
-    private PostRepository postRepository;
+    private final PostRepository postRepository;
 
-    @Autowired
-    private CommentService commentService;
+    private final CommentService commentService;
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private TagRepository tagRepository;
+    private final TagRepository tagRepository;
 
     @Override
     public Page<Post> findAllPosts(int page, int size, Sort.Direction direction, String properties) {
@@ -88,7 +88,7 @@ public class PostServiceImpl implements PostService {
     public List<Post> findPostsByTags(List<String> tagsTitles) {
         tagsTitles = tagsTitles.stream().map(tag -> {
             if (tag.matches("^\\[.+]$")) {
-                return tag.substring(1,tag.length()-1);
+                return tag.substring(1, tag.length() - 1);
             }
             if (tag.matches("^\\[.+$")) {
                 return tag.substring(1);

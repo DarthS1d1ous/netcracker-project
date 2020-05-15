@@ -21,7 +21,7 @@ public class UserRegistrationValidator implements Validator {
     @Override
     public void validate(Object o, Errors errors) {
         User registrationUser = (User) o;
-        if (userService.getUsernameIfExists(registrationUser.getUsername()) != null){
+        if (userService.getUsernameIfExists(registrationUser.getUsername()) != null) {
             errors.rejectValue("username", "This username is already in use.");
         }
     }

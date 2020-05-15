@@ -37,7 +37,7 @@ public class CommentController {
     }
 
     @RequestMapping(value = "/post/{postId}", method = RequestMethod.GET)
-    public List<Comment> findCommentsByPostId(@PathVariable(name = "postId") long postId){
+    public List<Comment> findCommentsByPostId(@PathVariable(name = "postId") long postId) {
         return commentService.findCommentsByPostId(postId);
     }
 }

@@ -19,7 +19,7 @@ body {
 .error {
   color: red;
   display: flex;
-  padding: 1.75em 2em;
+  padding: 4.75em 2em;
   justify-content: center;
 }
 
@@ -29,22 +29,29 @@ body {
   padding-bottom: 100px;
 }
 
+#container {
+  color: black !important;
+  font-family: "Raleway", Helvetica, sans-serif;
+}
+
 .frame {
+  background-color: white;
   height: 500px;
   width: 430px;
-  background:
-    linear-gradient(
-    rgba(35,43,85,0.75),
-    rgba(35,43,85,0.95)),
-    url(https://dl.dropboxusercontent.com/u/22006283/preview/codepen/clouds-cloudy-forest-mountain.jpg) no-repeat center center;
+  /*background:*/
+    /*linear-gradient(*/
+    /*rgba(35,43,85,0.75),*/
+    /*rgba(35,43,85,0.95)),*/
+    /*url(https://dl.dropboxusercontent.com/u/22006283/preview/codepen/clouds-cloudy-forest-mountain.jpg) no-repeat center center;*/
   background-size: cover;
   margin-left: auto;
   margin-right: auto;
-  border-top: solid 1px rgba(255,255,255,.5);
-  border-radius: 5px;
-  box-shadow: 0px 2px 7px rgba(0,0,0,0.2);
+  /*border-top: solid 1px rgba(255,255,255,.5);*/
+  /*border-radius: 5px;*/
+  /*box-shadow: 0px 2px 7px rgba(0,0,0,0.2);*/
   overflow: hidden;
   transition: all .5s ease;
+  border: 1px solid rgba(160, 160, 160, 0.3);
 }
 
 .form-signin .form-styling:last-child{
@@ -84,37 +91,42 @@ li {
   text-align: left;
   text-transform: uppercase;
   padding-right: 10px;
-  color: #ffffff;
+  color: #3c3b3b !important;
 }
 
 .signin-active a {
   padding-bottom: 10px;
-  color: #ffffff;
+  color: #2ebaae;
   text-decoration: none;
-  border-bottom: solid 2px #1059FF;
+  border-bottom: solid 1px rgba(160, 160, 160, 0.3);
   transition: all .25s ease;
   cursor: pointer;
 }
 
 .signin-inactive a {
   padding-bottom: 0;
-  color: rgba(255,255,255,.3);
+  color: #3c3b3b;
   text-decoration: none;
   border-bottom: none;
   cursor: pointer;
 }
 
+.links a {
+  letter-spacing: 0.25em;
+  font-size: 0.85rem;
+}
+
 .signup-active a {
   cursor: pointer;
-  color: #ffffff;
   text-decoration: none;
-  border-bottom: solid 2px #1059FF;
+  border-bottom: solid 1px rgba(160, 160, 160, 0.3);
   padding-bottom: 10px;
+  color: #2ebaae !important;
 }
 
 .signup-inactive a {
   cursor: pointer;
-  color: rgba(255,255,255,.3);
+  color: #3c3b3b;
   text-decoration: none;
   transition: all .25s ease;
 }
@@ -200,7 +212,7 @@ li {
 }
 
 .form-signin input, .form-signup input {
-  color: #ffffff;
+  color: black;
   font-size: 13px;
 }
 
@@ -208,20 +220,20 @@ li {
   width: 100%;
   height: 35px;
 	padding-left: 15px;
-	border: none;
-	border-radius: 20px;
-
-  background: rgba(255,255,255,.2);
+  border: none;
+  border-bottom: 1px solid #3c3b3b;
 }
 
 label {
   margin-top:30px;
   font-weight: 400;
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 0.7em;
+  font-family: "Raleway", Helvetica, sans-serif;
   padding-left: 15px;
   padding-bottom: 10px;
-  color: rgba(255,255,255,.7);
+  color: #3c3b3b;
+  letter-spacing: 0.25em;
   display: block;
 }
 
@@ -321,18 +333,17 @@ label {
 }
 
 .btn-signup {
+  background-color: transparent;
   float: left;
-  font-weight: 700;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   font-size: 13px;
   text-align: center;
-  color: #ffffff;
+  border: solid 1px rgba(160, 160, 160, 0.3);
+  color: #3c3b3b;
   width: 100%;
   height: 35px;
-	border: none;
-	border-radius: 20px;
   margin-top: 40px;
-  background-color: #1059FF;
 }
 
 .btn-signin {
@@ -343,6 +354,7 @@ label {
 	border: none;
 	border-radius: 20px;
   margin-top: -8px;
+  background-color: transparent;
 }
 
 .btn-animate {
@@ -402,7 +414,7 @@ a.btn-signup:hover, a.btn-signin:hover {
 }
 
 .forgot a {
-  color: rgba(255,255,255,.3);
+  color: #3c3b3b;
   font-weight: 400;
   font-size: 13px;
   text-decoration: none;
@@ -500,6 +512,10 @@ a.btn-goback:hover {
     background-color: #0F4FE6;
     transition: all .5s;
     color: #ffffff;
+}
+
+.inccorectInput {
+  border-bottom: 1px solid red;
 }
 
 /* refresh button styling */

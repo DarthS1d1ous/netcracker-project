@@ -13,7 +13,7 @@
         </div>
       </a>
     </div>
-    <i class="material-icons deletePost" (click)="deletePost()"
+    <i class="material-icons deletePost" (click)="openDeletePostDialog()"
        *ngIf="(user.id == post.user.id || (user.role.title.toLowerCase() === 'admin' && post.user.role.title.toLowerCase() != 'admin')) && singlePost">
       close
     </i>
@@ -29,7 +29,7 @@
     </ul>
     <div *ngIf="singlePost && postComments.length!=0" class="comments">
       <div class="comment" *ngFor="let comment of  postComments">
-        <i class="material-icons deleteComment" (click)="deleteComment(comment.id)"
+        <i class="material-icons deleteComment" (click)="openDeleteCommentDialog(comment.id)"
            *ngIf="(user.id == comment.user.id || (user.role.title.toLowerCase() === 'admin' && comment.user.role.title.toLowerCase() != 'admin')) && singlePost">
           close
         </i>

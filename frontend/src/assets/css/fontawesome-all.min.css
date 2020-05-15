@@ -4257,7 +4257,13 @@
 }
 
 .fa-search:before {
-  content: "\f002"
+  content: "\f002";
+  cursor: pointer;
+}
+
+a.disabled {
+  pointer-events: none;
+  cursor: default;
 }
 
 .fa-search-dollar:before {

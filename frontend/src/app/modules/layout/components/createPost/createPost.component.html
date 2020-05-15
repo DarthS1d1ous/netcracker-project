@@ -1,5 +1,6 @@
-<app-header></app-header>
+
 <div id="wrapper">
+  <app-header></app-header>
   <form class="create-post" [formGroup]="createPostForm" (ngSubmit)="onCreate(createPostForm.value)" action=""
         method="post" name="form">
     <label for="title">Title</label>

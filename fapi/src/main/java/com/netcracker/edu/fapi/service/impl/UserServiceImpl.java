@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Override
     public void insertSubscription(long subscriptionId, long userId) {
         RestTemplate restTemplate = new RestTemplate();
-        restTemplate.postForEntity(backendServerUrl + "/api/users/" + userId + "/subscription/" + subscriptionId,null,Object.class);
+        restTemplate.postForEntity(backendServerUrl + "/api/users/" + userId + "/subscription/" + subscriptionId, null, Object.class);
     }
 
     @Override

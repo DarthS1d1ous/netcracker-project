@@ -1,9 +1,6 @@
 package com.netcracker.edu.fapi.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import java.util.Objects;
-import java.util.Set;
 
 public class Role {
     private long id;

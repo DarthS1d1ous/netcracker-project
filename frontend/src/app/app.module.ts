@@ -23,8 +23,6 @@ import {APIInterceptor} from "./interceptors/api-interceptor";
 import {UserService} from "./services/user.service";
 import {ProfileComponent} from "./modules/layout/components/profile/profile.component";
 import {LoginGuard} from "./services/login.guard";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MatDialogModule} from '@angular/material/dialog';
 
 const appRoutes: Routes = [
   {path: "", component: HomeComponent, canActivate: [LoginGuard]},

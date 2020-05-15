@@ -3,11 +3,9 @@ package com.netcracker.edu.fapi.service;
 import com.netcracker.edu.fapi.models.Post;
 import com.netcracker.edu.fapi.models.User;
 import com.netcracker.edu.fapi.restPage.RestPageImpl;
-import javafx.geometry.Pos;
 import org.springframework.data.domain.Sort;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface PostService {
     RestPageImpl findAllPosts(int page, int size, Sort.Direction direction, String properties);
@@ -26,7 +24,7 @@ public interface PostService {
 
     List<User> findAllPostLikes(long id);
 
-    Long  findPostsCount();
+    Long findPostsCount();
 
     List<Post> findPostsByTags(List<String> tags);
 

@@ -18,14 +18,14 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public List<Role> findAllRoles() {
         RestTemplate restTemplate = new RestTemplate();
-        Role[] role = restTemplate.getForObject(backendServerUrl+"/api/roles", Role[].class);
+        Role[] role = restTemplate.getForObject(backendServerUrl + "/api/roles", Role[].class);
         return role == null ? Collections.emptyList() : Arrays.asList(role);
     }
 
     @Override
     public Role findByTitle(String title) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl+"/api/roles/role?title=" + title, Role.class);
+        return restTemplate.getForObject(backendServerUrl + "/api/roles/role?title=" + title, Role.class);
     }
 
     @Override

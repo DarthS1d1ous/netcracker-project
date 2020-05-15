@@ -2,9 +2,7 @@ package com.netcracker.edu.fapi.service.impl;
 
 import com.netcracker.edu.fapi.models.Tag;
 import com.netcracker.edu.fapi.service.TagService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,20 +18,20 @@ public class TagServiceImpl implements TagService {
     @Override
     public List<Tag> findAllTags() {
         RestTemplate restTemplate = new RestTemplate();
-        Tag[] tag = restTemplate.getForObject(backendServerUrl+"/api/tags", Tag[].class);
+        Tag[] tag = restTemplate.getForObject(backendServerUrl + "/api/tags", Tag[].class);
         return tag == null ? Collections.emptyList() : Arrays.asList(tag);
     }
 
     @Override
     public Tag findByTitle(String title) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl+"/api/tags/tag?title=" + title, Tag.class);
+        return restTemplate.getForObject(backendServerUrl + "/api/tags/tag?title=" + title, Tag.class);
     }
 
     @Override
     public Tag findById(long id) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl+"/api/tags/" + id, Tag.class);
+        return restTemplate.getForObject(backendServerUrl + "/api/tags/" + id, Tag.class);
     }
 
     @Override

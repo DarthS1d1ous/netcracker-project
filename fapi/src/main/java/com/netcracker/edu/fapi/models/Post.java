@@ -1,12 +1,8 @@
 package com.netcracker.edu.fapi.models;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import org.hibernate.validator.constraints.NotBlank;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Set;
@@ -122,15 +118,13 @@ public class Post {
                 Objects.equals(description, post.description) &&
                 Objects.equals(timeCreation, post.timeCreation) &&
                 Objects.equals(title, post.title) &&
-                Objects.equals(user, post.user) &&
                 Objects.equals(postTags, post.postTags) &&
-                Objects.equals(userLikes, post.userLikes) &&
-                Objects.equals(comments, post.comments);
+                Objects.equals(userLikes, post.userLikes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, photoPath, description, timeCreation, title, user, postTags, userLikes, comments);
+        return Objects.hash(id, photoPath, description, timeCreation, title, postTags, userLikes);
     }
 
     @Override

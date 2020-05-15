@@ -23,21 +23,21 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public List<Comment> findAllComments() {
         RestTemplate restTemplate = new RestTemplate();
-        Comment[] comment = restTemplate.getForObject(backendServerUrl+"/api/comments", Comment[].class);
+        Comment[] comment = restTemplate.getForObject(backendServerUrl + "/api/comments", Comment[].class);
         return comment == null ? Collections.emptyList() : Arrays.asList(comment);
     }
-    
+
 
     @Override
     public Comment findById(long id) {
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.getForObject(backendServerUrl+"/api/comments/" + id, Comment.class);
+        return restTemplate.getForObject(backendServerUrl + "/api/comments/" + id, Comment.class);
     }
 
     @Override
-    public List<Comment> findCommentsByPostId(long postId){
+    public List<Comment> findCommentsByPostId(long postId) {
         RestTemplate restTemplate = new RestTemplate();
-        Comment[] comment = restTemplate.getForObject(backendServerUrl+"/api/comments/post/" + postId, Comment[].class);
+        Comment[] comment = restTemplate.getForObject(backendServerUrl + "/api/comments/post/" + postId, Comment[].class);
         return comment == null ? Collections.emptyList() : Arrays.asList(comment);
     }
 

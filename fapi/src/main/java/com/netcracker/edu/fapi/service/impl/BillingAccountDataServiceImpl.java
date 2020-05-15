@@ -3,7 +3,6 @@ package com.netcracker.edu.fapi.service.impl;
 import com.netcracker.edu.fapi.models.BillingAccountViewModel;
 import com.netcracker.edu.fapi.service.BillingAccountDataService;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -29,6 +28,7 @@ public class BillingAccountDataServiceImpl implements BillingAccountDataService 
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.getForObject(backendServerUrl + "/api/billing-accounts/" + id, BillingAccountViewModel.class);
     }
+
     @Override
     public BillingAccountViewModel saveBillingAccount(BillingAccountViewModel account) {
         RestTemplate restTemplate = new RestTemplate();

@@ -19,6 +19,7 @@ export class MainComponent implements OnInit, OnDestroy {
     totalItems: 0
   };
   inputTags: string = '';
+  public postsBeforeSearching: Post[];
   public posts: Post[];
   private subscriptions: Subscription[] = [];
 
@@ -31,6 +32,7 @@ export class MainComponent implements OnInit, OnDestroy {
   private loadPosts() {
     this.subscriptions.push(this.postService.findPosts(this.config.currentPage-1,this.config.itemsPerPage, "desc", "timeCreation").subscribe(page => {
       this.posts = page.content;
+      this.postsBeforeSearching = page.content;
       this.config.totalItems= page.totalElements;
     }));
   }
@@ -42,12 +44,15 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   searchPostsByTags(tags: string){
-    let titles = tags.split("#").filter(tag => tag != '').toString();
-    console.log(titles)
-    this.postService.findPostsByTags(titles).subscribe(posts => {
-      this.posts = posts;
-      this.config.totalItems = posts.length;
-    })
+    if(tags.trim().length!=0) {
+      let titles = tags.split("#").filter(tag => tag != '').toString();
+      this.postService.findPostsByTags(titles).subscribe(posts => {
+        this.posts = posts;
+        this.config.totalItems = posts.length;
+      })
+    } else {
+      this.posts = this.postsBeforeSearching;
+    }
   }
 
   ngOnDestroy(): void {

@@ -1,9 +1,7 @@
 package com.netcracker.edu.fapi.models;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Objects;
 
@@ -75,13 +73,11 @@ public class Comment {
         Comment comment = (Comment) o;
         return id == comment.id &&
                 Objects.equals(timeCreation, comment.timeCreation) &&
-                Objects.equals(message, comment.message) &&
-                Objects.equals(user, comment.user) &&
-                Objects.equals(post, comment.post);
+                Objects.equals(message, comment.message);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, timeCreation, message, user, post);
+        return Objects.hash(id, timeCreation, message);
     }
 }

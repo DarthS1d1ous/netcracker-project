@@ -48,24 +48,24 @@ public class UserController {
         return userService.findById(id);
     }
 
-    @RequestMapping(value = "/{userId}/subscription/{subscriptionId}" ,method = RequestMethod.DELETE)
-    public void deleteSubscription(@PathVariable(name = "subscriptionId") long subscriptionId,@PathVariable(name = "userId") long userId){
+    @RequestMapping(value = "/{userId}/subscription/{subscriptionId}", method = RequestMethod.DELETE)
+    public void deleteSubscription(@PathVariable(name = "subscriptionId") long subscriptionId, @PathVariable(name = "userId") long userId) {
         userService.deleteSubscription(subscriptionId, userId);
     }
 
-    @RequestMapping(value = "/{userId}/subscription/{subscriptionId}" ,method = RequestMethod.POST)
-    public void insertSubscription(@PathVariable(name = "subscriptionId") long subscriptionId,@PathVariable(name = "userId") long userId){
+    @RequestMapping(value = "/{userId}/subscription/{subscriptionId}", method = RequestMethod.POST)
+    public void insertSubscription(@PathVariable(name = "subscriptionId") long subscriptionId, @PathVariable(name = "userId") long userId) {
         userService.insertSubscription(subscriptionId, userId);
     }
 
     @GetMapping(value = "/likes/count/{id}")
-    public Integer findUserLikesCount(@PathVariable(name = "id") long id){
+    public Integer findUserLikesCount(@PathVariable(name = "id") long id) {
         return userService.findUserLikesCount(id);
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json")
     public User saveUser(@Valid @RequestBody User user, BindingResult result) {
-        if(user.getId()==0L) {
+        if (user.getId() == 0L) {
             userRegistrationValidator.validate(user, result);
             if (result.hasErrors()) {
                 throw new UserRegistrationException(result.getAllErrors().get(0).getCode());

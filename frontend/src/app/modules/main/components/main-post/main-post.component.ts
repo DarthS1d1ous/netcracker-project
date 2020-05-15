@@ -8,6 +8,8 @@ import {User} from "../../../../models/user";
 import {Comment} from "../../../../models/comment"
 import {CommentService} from "../../../../services/comment.service";
 import {StorageService} from "../../../../services/storage.service";
+import {ConfirmationDialog} from "../confirmation-dialog/confirmation-dialog.component";
+import {MatDialog} from "@angular/material";
 
 @Component({
   selector: "app-main-post",
@@ -33,7 +35,7 @@ export class MainPostComponent implements OnInit, OnDestroy {
 
   constructor(private postService: PostService, private router: ActivatedRoute,
               private commentService: CommentService, private storageService: StorageService,
-              private navigateRouter: Router) {
+              private navigateRouter: Router, private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -97,6 +99,38 @@ export class MainPostComponent implements OnInit, OnDestroy {
     this.postLikedByUser = !!this.post.userLikes.find(user => user.id == this.user.id);
   }
 
+  openDeletePostDialog() {
+    const dialogRef = this.openDialog();
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.deletePost();
+      }
+    });
+  }
+
+  openDeleteCommentDialog(commentId: number) {
+    const dialogRef = this.openDialog();
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.deleteComment(commentId);
+      }
+    });
+  }
+
+  openDialog(): any {
+    return this.dialog.open(ConfirmationDialog, {
+      data: {
+        message: 'Are you sure want to delete?',
+        buttonText: {
+          ok: 'Yes',
+          cancel: 'No'
+        }
+      }
+    });
+  }
+
   deletePost() {
     this.postService.deletePost(this.post.id).subscribe(() => {
       this.navigateRouter.navigate(['/home']);
@@ -105,7 +139,7 @@ export class MainPostComponent implements OnInit, OnDestroy {
 
   deleteComment(commentId: number) {
     this.commentService.deleteComment(commentId).subscribe(() => {
-      this.postComments = this.postComments.filter(comment => comment.id!=commentId);
+      this.postComments = this.postComments.filter(comment => comment.id != commentId);
     });
   }
 

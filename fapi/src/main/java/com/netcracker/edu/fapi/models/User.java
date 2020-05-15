@@ -1,7 +1,5 @@
 package com.netcracker.edu.fapi.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -194,17 +192,13 @@ public class User {
                 Objects.equals(surname, user.surname) &&
                 Objects.equals(phone, user.phone) &&
                 Objects.equals(username, user.username) &&
-                Objects.equals(role, user.role) &&
-//                Objects.equals(posts, user.posts) &&
-//                Objects.equals(postLikes, user.postLikes) &&
-//                Objects.equals(comments, user.comments) &&
-                Objects.equals(subscribers, user.subscribers) &&
-                Objects.equals(subscriptions, user.subscriptions);
+                Objects.equals(mainPhoto, user.mainPhoto) &&
+                Objects.equals(role, user.role);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, email, password, name, timeRegistration, surname, phone, username, role, subscribers, subscriptions);
+        return Objects.hash(id, email, password, name, timeRegistration, surname, phone, username, mainPhoto, role);
     }
 
     @Override

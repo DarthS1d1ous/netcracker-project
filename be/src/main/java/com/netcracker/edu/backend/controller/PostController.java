@@ -10,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -35,12 +34,12 @@ public class PostController {
             params = {"page", "size", "direction", "properties"},
             method = RequestMethod.GET)
     public Page<Post> getAllPosts(@RequestParam("page") int page, @RequestParam("size") int size,
-                                  @RequestParam("direction") Sort.Direction direction,@RequestParam("properties") String properties) {
-        return postService.findAllPosts(page, size,direction, properties);
+                                  @RequestParam("direction") Sort.Direction direction, @RequestParam("properties") String properties) {
+        return postService.findAllPosts(page, size, direction, properties);
     }
 
     @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
-    public List<Post> findPostsByUserId(@PathVariable(name = "userId") long userId){
+    public List<Post> findPostsByUserId(@PathVariable(name = "userId") long userId) {
         return postService.findPostsByUserId(userId);
     }
 
@@ -80,12 +79,12 @@ public class PostController {
     }
 
     @RequestMapping(value = "/tags", method = RequestMethod.GET)
-    public List<Post> getPostsByTags(@RequestParam("title") List<String> tags){
+    public List<Post> getPostsByTags(@RequestParam("title") List<String> tags) {
         return postService.findPostsByTags(tags);
     }
 
     @RequestMapping(value = "/mostByLikes", method = RequestMethod.GET)
-    public List<Post> find10MostLikedPosts(){
+    public List<Post> find10MostLikedPosts() {
         return postService.findMostLikedPosts();
     }
 

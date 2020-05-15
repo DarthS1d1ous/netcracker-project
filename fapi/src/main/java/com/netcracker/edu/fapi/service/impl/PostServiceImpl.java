@@ -45,7 +45,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> findMostLikedPosts(){
+    public List<Post> findMostLikedPosts() {
         RestTemplate restTemplate = new RestTemplate();
         Post[] posts = restTemplate.getForObject(backendServerUrl + "/api/posts/mostByLikes", Post[].class);
         return posts == null ? Collections.emptyList() : Arrays.asList(posts);
@@ -64,9 +64,9 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<Post> findPostsByUserId(long userId){
+    public List<Post> findPostsByUserId(long userId) {
         RestTemplate restTemplate = new RestTemplate();
-        Post[] posts = restTemplate.getForObject(backendServerUrl+"/api/posts/user/" + userId, Post[].class);
+        Post[] posts = restTemplate.getForObject(backendServerUrl + "/api/posts/user/" + userId, Post[].class);
         return posts == null ? Collections.emptyList() : Arrays.asList(posts);
     }
 

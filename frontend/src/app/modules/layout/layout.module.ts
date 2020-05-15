@@ -1,8 +1,6 @@
 import { NgModule } from "@angular/core";
-import {BillingDetailsViewComponent} from "./components/billing-details/billing-details-view.component";
 import {NotFoundComponent} from "./components/404/not-found.component";
 import {HomeComponent} from "./components/home/home.component";
-import {BillingAccountModule} from "../billing-account/billing-account.module";
 import {HeaderModule} from "../header/header.module";
 import {RouterModule} from "@angular/router";
 import {MainModule} from "../main/main.module";
@@ -16,20 +14,20 @@ import {CommonModule} from "@angular/common";
 import {CreatePostComponent} from "./components/createPost/createPost.component";
 import {MainPostComponent} from "../main/components/main-post/main-post.component";
 import {ProfileComponent} from "./components/profile/profile.component";
+import {ConfirmationDialog} from "../main/components/confirmation-dialog/confirmation-dialog.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
   declarations: [
     HomeComponent,
     NotFoundComponent,
-    BillingDetailsViewComponent,
     SinglePostComponent,
     LoginComponent,
     CreatePostComponent,
-    ProfileComponent
+    ProfileComponent,
   ],
   imports: [
-    BillingAccountModule,
     HeaderModule,
     RouterModule,
     SidebarModule,
@@ -38,9 +36,9 @@ import {ProfileComponent} from "./components/profile/profile.component";
     FooterModule,
     FormsModule,
     CommonModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
-  exports: [HomeComponent, NotFoundComponent, BillingDetailsViewComponent, SinglePostComponent, LoginComponent, CreatePostComponent, ProfileComponent]
+  exports: [HomeComponent, NotFoundComponent, SinglePostComponent, LoginComponent, CreatePostComponent, ProfileComponent]
 })
 export class LayoutModule {}

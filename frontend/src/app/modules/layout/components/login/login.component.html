@@ -1,6 +1,8 @@
 <link rel="stylesheet" href="../../../../../assets/css/login.css" xmlns="http://www.w3.org/1999/html"/>
+<div id="wrapper">
 <app-header></app-header>
-<div class="container">
+</div>
+<div class="container" id="containert">
   <div class="frame">
     <div class="nav">
       <ul class="links">
@@ -24,40 +26,40 @@
 
       <form class="form-signup" [formGroup]="signUpForm" (ngSubmit)="onSignUp(signUpForm.value)" action="" method="post" name="form">
         <label for="name">Name</label>
-        <input class="form-styling" type="text" formControlName="name" id="name">
-        <div class="invalid" *ngIf="signUpForm.get('name').invalid && signUpForm.get('name').touched">
-          Incorrect name
-        </div>
+        <input class="form-styling" type="text" formControlName="name" id="name" [class.inccorectInput]="signUpForm.get('name').invalid && signUpForm.get('name').touched">
+        <!--<div class="invalid" *ngIf="signUpForm.get('name').invalid && signUpForm.get('name').touched">-->
+          <!--Incorrect name-->
+        <!--</div>-->
         <label for="surname">Surname</label>
-        <input class="form-styling" type="text" name="surname" formControlName="surname" id="surname"/>
-        <div class="invalid" *ngIf="signUpForm.get('surname').invalid && signUpForm.get('surname').touched">
-          Incorrect surname
-        </div>
+        <input class="form-styling" type="text" name="surname" formControlName="surname" id="surname" [class.inccorectInput]="signUpForm.get('surname').invalid && signUpForm.get('surname').touched"/>
+        <!--<div class="invalid" *ngIf="signUpForm.get('surname').invalid && signUpForm.get('surname').touched">-->
+          <!--Incorrect surname-->
+        <!--</div>-->
         <label for="phone">Phone number</label>
-        <input class="form-styling" type="text" name="phone" formControlName="phone" id="phone"/>
-        <div class="invalid" *ngIf="signUpForm.get('phone').invalid && signUpForm.get('phone').touched">
-          Incorrect phone number
-        </div>
+        <input class="form-styling" type="text" name="phone" formControlName="phone" id="phone" [class.inccorectInput]="signUpForm.get('phone').invalid && signUpForm.get('phone').touched"/>
+        <!--<div class="invalid" *ngIf="signUpForm.get('phone').invalid && signUpForm.get('phone').touched">-->
+          <!--Incorrect phone number-->
+        <!--</div>-->
         <label for="username">Username</label>
-        <input class="form-styling" type="text" name="username" formControlName="username" id="username"/>
-        <div class="invalid" *ngIf="signUpForm.get('username').invalid && signUpForm.get('username').touched">
-          Incorrect username
-        </div>
+        <input class="form-styling" type="text" name="username" formControlName="username" id="username" [class.inccorectInput]="signUpForm.get('username').invalid && signUpForm.get('username').touched"/>
+        <!--<div class="invalid" *ngIf="signUpForm.get('username').invalid && signUpForm.get('username').touched">-->
+          <!--Incorrect username-->
+        <!--</div>-->
         <label for="email">Email</label>
-        <input class="form-styling" type="text" name="email" formControlName="email" id="email"/>
-        <div class="invalid" *ngIf="signUpForm.get('email').invalid && signUpForm.get('email').touched">
-          Incorrect email
-        </div>
+        <input class="form-styling" type="text" name="email" formControlName="email" id="email" [class.inccorectInput]="signUpForm.get('email').invalid && signUpForm.get('email').touched"/>
+        <!--<div class="invalid" *ngIf="signUpForm.get('email').invalid && signUpForm.get('email').touched">-->
+          <!--Incorrect email-->
+        <!--</div>-->
         <label for="password">Password</label>
-        <input class="form-styling" type="password" name="password" formControlName="password" id="password"/>
-        <div class="invalid" *ngIf="signUpForm.get('password').invalid && signUpForm.get('password').touched">
-          Incorrect password
-        </div>
+        <input class="form-styling" type="password" name="password" formControlName="password" id="password" [class.inccorectInput]="signUpForm.get('password').invalid && signUpForm.get('password').touched"/>
+        <!--<div class="invalid" *ngIf="signUpForm.get('password').invalid && signUpForm.get('password').touched">-->
+          <!--Incorrect password-->
+        <!--</div>-->
         <label for="confirmpassword">Confirm password</label>
-        <input class="form-styling" type="password" name="confirmpassword" formControlName="confirmpassword" id="confirmpassword"/>
-        <div class="invalid" *ngIf="signUpForm.get('confirmpassword').invalid && signUpForm.get('confirmpassword').touched">
-          Passwords don't match
-        </div>
+        <input class="form-styling" type="password" name="confirmpassword" formControlName="confirmpassword" id="confirmpassword" [class.inccorectInput]="signUpForm.get('confirmpassword').invalid && signUpForm.get('confirmpassword').touched"/>
+        <!--<div class="invalid" *ngIf="signUpForm.get('confirmpassword').invalid && signUpForm.get('confirmpassword').touched">-->
+          <!--Passwords don't match-->
+        <!--</div>-->
         <label for="mainPhoto">Load avatar</label>
         <input class="" type="file" name="mainPhoto" formControlName="mainPhoto" id="mainPhoto" (change)="handleFileSelect($event)"/>
         <button type="submit" class="btn-signup" [disabled]="signUpForm.invalid">Sign Up</button>
@@ -65,9 +67,7 @@
           This username is already in use.
         </div>
       </form>
-
     </div>
-
     <div class="forgot">
       <a>Forgot your password?</a>
     </div>

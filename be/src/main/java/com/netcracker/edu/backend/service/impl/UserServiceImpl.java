@@ -37,7 +37,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void insertSubscription(long subscriptionId, long userId) {
-        long sd =subscriptionId;
+        long sd = subscriptionId;
         userRepository.insertSubscription(subscriptionId, userId);
     }
 

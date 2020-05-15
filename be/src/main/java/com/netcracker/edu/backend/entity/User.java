@@ -1,17 +1,30 @@
 package com.netcracker.edu.backend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+import org.hibernate.validator.constraints.Length;
+import org.springframework.util.CollectionUtils;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Collections;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder(toBuilder = true)
 @Entity
 @Table(name = "users", schema = "backend")
+@EqualsAndHashCode
+@ToString
 public class User implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String email;
     private String password;
@@ -20,238 +33,68 @@ public class User implements Serializable {
     private String surname;
     private String phone;
     private String username;
+    @Length(max = Integer.MAX_VALUE - 1)
     private String mainPhoto;
-
-
-    private Role role;
-
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-//    private Set<Post> posts;
-//
-//    @JsonIgnore
-//    @ManyToMany(mappedBy = "userLikes")
-//    private Set<Post> postLikes;
-//
-//    @JsonIgnore
-//    @OneToMany(mappedBy = "user")
-//    private Set<Comment> comments;
-
-
-    private Set<User> subscribers = new HashSet<>();
-
-    private Set<User> subscriptions = new HashSet<>();
-
-    public User(String email, String password, String name, Timestamp timeRegistration, String surname, String phone, String username, String mainPhoto) {
-        this.email = email;
-        this.password = password;
-        this.name = name;
-        this.timeRegistration = timeRegistration;
-        this.surname = surname;
-        this.phone = phone;
-        this.username = username;
-        this.mainPhoto = mainPhoto;
-    }
-
-    public User() {
-    }
-
-    @Column(name = "main_photo")
-    public String getMainPhoto() {
-        return mainPhoto;
-    }
-
-    public void setMainPhoto(String mainPhoto) {
-        this.mainPhoto = mainPhoto;
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Column(name = "time_registration")
-    public Timestamp getTimeRegistration() {
-        return timeRegistration;
-    }
-
-    public void setTimeRegistration(Timestamp timeRegistration) {
-        this.timeRegistration = timeRegistration;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
 
     @ManyToOne
     @JoinColumn(name = "role_id")
-    public Role getRole() {
-        return role;
-    }
+    private Role role;
 
-    public void setRole(Role role) {
-        this.role = role;
-    }
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Post> posts;
 
-    public String getUsername() {
-        return username;
-    }
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonIgnore
+    @ManyToMany(mappedBy = "userLikes", cascade = CascadeType.ALL)
+    private Set<Post> postLikes;
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private Set<Comment> comments;
 
-//    public Set<Post> getPosts() {
-//        return posts;
-//    }
-//
-//    public void setPosts(Set<Post> posts) {
-//        this.posts = posts;
-//    }
-//
-//    public Set<Post> getPostLikes() {
-//        return postLikes;
-//    }
-//
-//    public void setPostLikes(Set<Post> postLikes) {
-//        this.postLikes = postLikes;
-//    }
-//
-//    public Set<Comment> getComments() {
-//        return comments;
-//    }
-//
-//    public void setComments(Set<Comment> comments) {
-//        this.comments = comments;
-//    }
-
-    @ManyToMany(fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinTable(name = "subscriptions",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "subscription_id")
     )
-    public Set<User> getSubscribers() {
-        if (subscribers != null) {
-            return subscribers.stream().map(this::userConverter).collect(Collectors.toSet());
-        }
-        return null;
-    }
+    private Set<User> subscribers = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @EqualsAndHashCode.Exclude
+    @ToString.Exclude
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @JoinTable(name = "subscriptions",
             joinColumns = @JoinColumn(name = "subscription_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
-    public Set<User> getSubscriptions() {
-        if (subscriptions != null) {
-            return subscriptions.stream().map(this::userConverter).collect(Collectors.toSet());
+    private Set<User> subscriptions = new HashSet<>();
+
+    public Set<User> getSubscribers() {
+        if (CollectionUtils.isEmpty(subscribers)) {
+            return Collections.emptySet();
         }
-        return null;
+        return subscribers.stream().map(this::userConverter).collect(Collectors.toSet());
     }
 
-    public void setSubscriptions(Set<User> subscriptions) {
-        this.subscriptions = subscriptions;
+    public Set<User> getSubscriptions() {
+        if (CollectionUtils.isEmpty(subscriptions)) {
+            return Collections.emptySet();
+        }
+        return subscriptions.stream().map(this::userConverter).collect(Collectors.toSet());
     }
 
-    public void setSubscribers(Set<User> subscribers) {
-        this.subscribers = subscribers;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return id == user.id &&
-                Objects.equals(email, user.email) &&
-                Objects.equals(password, user.password) &&
-                Objects.equals(name, user.name) &&
-                Objects.equals(timeRegistration, user.timeRegistration) &&
-                Objects.equals(surname, user.surname) &&
-                Objects.equals(phone, user.phone) &&
-                Objects.equals(username, user.username) &&
-                Objects.equals(role, user.role) &&
-//                Objects.equals(posts, user.posts) &&
-//                Objects.equals(postLikes, user.postLikes) &&
-//                Objects.equals(comments, user.comments) &&
-                Objects.equals(subscribers, user.subscribers) &&
-                Objects.equals(subscriptions, user.subscriptions);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, email, password, name, timeRegistration, surname, phone, username, role);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
-                ", timeRegistration=" + timeRegistration +
-                ", surname='" + surname + '\'' +
-                ", phone='" + phone + '\'' +
-                ", username='" + username + '\'' +
-                ", role=" + role +
-                '}';
-    }
-
-    public User userConverter(User user) {
-//        user.setSubscribers(user.getSubscribers().stream().peek(user1 -> {
-//            user1.setSubscribers(new HashSet<>());
-//            user1.setSubscriptions(new HashSet<>());
-//        }).collect(Collectors.toSet()));
-//        user.setSubscriptions(user.getSubscriptions().stream().peek(user1 -> {
-//            user1.setSubscribers(new HashSet<>());
-//            user1.setSubscriptions(new HashSet<>());
-//        }).collect(Collectors.toSet()));
-//        return user;
-        User userDTO = new User();
-        userDTO.setId(user.getId());
-        return userDTO;
+    private User userConverter(User user) {
+        User.UserBuilder userBuilder = user.toBuilder();
+        return userBuilder.subscribers(Collections.emptySet())
+                .subscriptions(Collections.emptySet())
+                .build();
     }
 }
 

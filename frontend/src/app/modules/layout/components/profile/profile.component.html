@@ -10,24 +10,28 @@
       <div class="information">
         <div>
           <p class="fullName">{{userProfile.name}} {{userProfile.surname}}</p>
-          <button class="settings" [class.subscribe]="!subscription" *ngIf="userProfile.id!=currentUser.id"
-          (click)="subscribe()">{{buttonSubscriptionTitle}}</button>
+          <button class="settings" [class.subscribe]="buttonSubscriptionTitle == 'Subscribe'"
+                  *ngIf="userProfile.id!=currentUser.id"
+                  (click)="subscribe(userProfile)">{{buttonSubscriptionTitle}}</button>
           <button class="settings"
                   *ngIf="currentUser.role.title.toLowerCase() === 'admin' && userProfile.id!=currentUser.id
                   && userProfile.role.title.toLowerCase() != 'admin'"
-                  (click)="deleteUser()">Delete user
+                  (click)="openDeleteUserDialog()">Delete user
           </button>
         </div>
         <div class="mainStatistics">
-          <p>Publications: {{posts.length}}</p>
-          <p>Subscribers: {{userProfile.subscribers.length}}</p>
-          <p>Subscriptions: {{userProfile.subscriptions.length}}</p>
-          <p>User likes count: {{userLikesCount}}</p>
+          <p class="publicationsCount">Publications: <b>{{posts.length}}</b></p>
+          <p data-toggle="modal" class="subscribersInfo" data-target="#exampleModalScrollable" (click)="reassignSubscriptionList(1)">
+            Subscribers: <b>{{userProfile.subscribers.length}}</b>
+          </p>
+          <p data-toggle="modal" class="subscribersInfo" data-target="#exampleModalScrollable" (click)="reassignSubscriptionList(2)">
+            Subscriptions: <b>{{userProfile.subscriptions.length}}</b>
+          </p>
+          <p class="likesCount">Likes count: <b>{{userLikesCount}}</b></p>
         </div>
       </div>
     </div>
     <div>
-      <p class="publications">Publications</p>
       <div class="profilePosts">
         <div *ngFor="let post of posts">
           <div class="profilePost">
@@ -40,3 +44,30 @@
     </div>
   </div>
 </div>
+<div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalScrollableTitle">{{operation}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" *ngFor="let userWithSubscriptionButton of usersWithSubscriptionButtons | keyvalue">
+        <div class="subscribersList" [routerLink]="['/profile', userWithSubscriptionButton.key.id]">
+          <img src="{{checkMainPhoto(userWithSubscriptionButton.key.mainPhoto)}}" alt=""/>
+        </div>
+        <p class="" [routerLink]="['/profile', userWithSubscriptionButton.key.id]">{{userWithSubscriptionButton.key.name}} {{userWithSubscriptionButton.key.surname}}</p>
+        <button class="settings" [class.subscribe]="userWithSubscriptionButton.value == 'Subscribe'"
+                *ngIf="userWithSubscriptionButton.key.id != currentUser.id"
+                (click)="subscribe(userWithSubscriptionButton.key)">
+          {{userWithSubscriptionButton.value}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+

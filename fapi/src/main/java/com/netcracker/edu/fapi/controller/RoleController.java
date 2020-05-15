@@ -23,7 +23,7 @@ public class RoleController {
     public Role getRoleByTitle(@RequestParam(value = "title") String title) {
         return roleService.findByTitle(title);
     }
-    
+
     @RequestMapping(value = "", method = RequestMethod.POST, produces = "application/json")
     public Role saveRole(@RequestBody Role role) {
         return roleService.saveRole(role);
